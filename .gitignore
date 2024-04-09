@@ -1,0 +1,6 @@
+.DS_Store
+node_modules
+*.mp4
+*.jpg
+._*
+config.js
