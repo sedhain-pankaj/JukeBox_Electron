@@ -1,0 +1,143 @@
+/* second subsection */
+.right-queue {
+  position: absolute;
+  margin: 0.5%;
+  bottom: 0px;
+  left: 0px;
+  top: 16%;
+  right: 0px;
+}
+
+#queue_header {
+  position: absolute;
+  bottom: 92%;
+  left: 0px;
+  top: 0px;
+  right: 60%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#queue_header span {
+  font-size: clamp(1vw, 1.5vw, 2vw);
+  font-weight: bolder;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-auto-flow: column;
+  align-content: end;
+  justify-content: start;
+  align-items: center;
+}
+
+.clear_queue_div {
+  position: absolute;
+  margin: 0.5%;
+  left: 40%;
+  top: 0px;
+  right: 0px;
+  bottom: 92%;
+}
+
+.right-block-down {
+  position: absolute;
+  margin: 0.5%;
+  border: 0.25vw solid #015433;
+  border-radius: 1vw;
+  left: 0px;
+  top: 8%;
+  right: 13%;
+  bottom: 0px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#right-side-arrow {
+  position: absolute;
+  margin: 0.5%;
+  bottom: 0px;
+  left: 87%;
+  top: 8%;
+  right: 0px;
+}
+
+/* clear queue button css: regular, hover & active */
+.button-right {
+  cursor: pointer;
+  font-size: clamp(1vw, 1.5vw, 2vw);
+  font-weight: bold;
+  color: #7e0000;
+  border: 0.1vw solid #315f53;
+  border-radius: 1vw;
+  background-color: rgba(168, 164, 164, 0.8);
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.button-right:hover {
+  background-color: #7e0000;
+  color: #fff;
+  box-shadow: 3px 3px 10px #d3cccc;
+  transform: translateX(-1px);
+  font-weight: bolder;
+}
+.button-right:active {
+  transform: translateX(1px);
+  box-shadow: 0px 0px 0px #d3cccc;
+}
+
+#clear_queue_input {
+  width: 95%;
+  border-radius: 10px;
+  border: 1px solid #315f53;
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+  cursor: block;
+}
+
+/* Queue Div: Name and Button */
+.queue_div {
+  margin: 2%;
+  border-bottom: 0.2vw solid rgb(67, 52, 52);
+}
+.queue_name {
+  font-size: clamp(0.5vw, 1vw, 5vw);
+  font-weight: bold;
+  color: #500059;
+  margin-bottom: 1%;
+}
+.queue_remove_button {
+  float: right;
+  margin: 3%;
+  width: 45%;
+  height: 35%;
+  border-radius: 1vw;
+  border: 0.1vw solid #a1a1a1;
+  color: #ff0000;
+  font-size: clamp(1vw, 1.8vw, 2vw);
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+#backspace{
+  font-size:clamp(1vw, 1.2vw, 2vw)
+}
+
+/* scrollbar button - seperate for queue */
+.scroll_up_queue {
+  top: 0px;
+  bottom: 89%;
+}
+.scroll_down_queue {
+  top: 89%;
+  bottom: 0px;
+}
