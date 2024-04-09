@@ -25,6 +25,7 @@ and can be run on any platform.
 - Zooming in too much may cause CSS to overlap. So, `resizable: false` is used in the main.js file.
 - Volume slider requires multi-touch display. Use, the `+` and `-` keys for single-touch display.
 - All videos are not 16/9 aspect ratio. May result in black bar.
+- Config.js has not been included in the repository. It contains YT v3 API key `const YT_API_Key = "AIzaSyB9xxxxxxxxxxxxxxxxxxxxx";` needed for YouTube search.
 
 ## Demo
 
