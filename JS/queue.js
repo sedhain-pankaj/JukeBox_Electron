@@ -13,8 +13,8 @@ function queue_array_create(filename, img, dir) {
     return;
   }
 
-  // Guard clause: if video.src is same as dir, display message
-  if (decodeURIComponent(new URL(video.src).pathname.slice(1)) == dir) {
+  // Guard clause: if video.src includes dir, display message
+  if (decodeURIComponent(new URL(video.src).pathname).includes(dir)) {
     jquery_modal({
       message:
         "This song is being played currently. Once it ends completely, it can be re-added to queue.",
