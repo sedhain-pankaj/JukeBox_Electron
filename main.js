@@ -9,7 +9,6 @@ ipcMain.handle("ping", () => {
     let data = "";
 
     server.stdout.on("data", (chunk) => {
-      console.log(`Server: ${chunk}`);
       data += chunk;
     });
 
