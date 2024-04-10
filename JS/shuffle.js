@@ -35,14 +35,12 @@ function shuffleAjaxCall(key, index) {
       clearInterval(intervalId); // stop retrying once the cache is found
 
       //find a <section> tag with the same ID as the key
-      var section = cache.match(
-        new RegExp('<section id="' + id + '">.*?</section>', "s")
-      );
+      var section = cache.find((obj) => obj.hasOwnProperty(id));
 
       //if the section exists, render the songs
       if (section) {
         // find all <table> tags within the section
-        var tables = section[0].match(/<table[^>]*>.*?<\/table>/gs);
+        var tables = section[id].match(/<table[^>]*>.*?<\/table>/gs);
 
         // find all the links to the directories within the tables
         var dirLinks = tables.map(function (table) {
@@ -97,59 +95,63 @@ function shuffler(array, dir_msg) {
     //a random click on DOM element to trigger autoshuffle => checkActivity()
     //triggers 80s shuffle when previous shuffle ends
     $("#queue_header").click();
-  } else {
-    closeNav();
+    return;
+  }
 
-    //destroy mejs if title doesnt contains dir_msg_collection
-    if (
-      !dir_msg_collection.some((item) =>
-        $("#video_title").text().includes(item)
-      ) &&
-      !$("#video_title").text().includes("Video Title")
-    ) {
-      $("#video_container").empty();
-      //create a new media element in the video container
-      $("#video_container").html(
-        "<video id='video' src='' autoplay preload='auto'></video>"
-      );
-      //video dimensions scale to fit the container
-      video_scaler();
+  //destroy mejs if title doesnt contains dir_msg_collection
+  closeNav();
+  if (
+    !dir_msg_collection.some((item) =>
+      $("#video_title").text().includes(item)
+    ) &&
+    !$("#video_title").text().includes("Video Title")
+  ) {
+    $("#video_container").empty();
+    //create a new media element in the video container
+    $("#video_container").html(
+      "<video id='video' src='' autoplay preload='auto'></video>"
+    );
+    //video dimensions scale to fit the container
+    video_scaler();
 
-      //alerts queue finished and going back to shuffle
+    //clear any previous interval amd 0.5 sec delay to avoid cleared pswd timer affecting new modal
+    clearInterval(countdownInterval);
+    $("#dialog-confirm").dialog("close");
+    setTimeout(function () {
       jquery_modal({
         message:
           "Queued songs have finished. The last played randomizer will resume.",
         title: "Resuming Previous Randomizer",
         closeTime: 5000,
       });
-    }
-
-    //if queue_array is not empty, play_Queue()
-    function relooper_shuffle() {
-      if (queue_array.length > 0) {
-        play_Queue();
-      } else {
-        shuffler(array, dir_msg);
-      }
-    }
-
-    //get the video element
-    var video = document.getElementById("video");
-    //set the source of the video element
-    video.src = array[0];
-
-    //mejs player
-    mejs_media_Player(relooper_shuffle);
-
-    //append video title to div with id="video_title"
-    var video_title = document.getElementById("video_title");
-    video_title.innerHTML = array[0].split("/").pop();
-    video_title.innerHTML = video_title.innerHTML.slice(0, -4);
-    video_title.innerHTML = dir_msg + video_title.innerHTML;
-
-    //remove first element from array
-    array.shift();
+    }, 500);
   }
+
+  //if queue_array is not empty, play_Queue()
+  function relooper_shuffle() {
+    if (queue_array.length > 0) {
+      play_Queue();
+    } else {
+      shuffler(array, dir_msg);
+    }
+  }
+
+  //get the video element
+  var video = document.getElementById("video");
+  //set the source of the video element
+  video.src = array[0];
+
+  //mejs player
+  mejs_media_Player(relooper_shuffle);
+
+  //append video title to div with id="video_title"
+  var video_title = document.getElementById("video_title");
+  video_title.innerHTML = array[0].split("/").pop();
+  video_title.innerHTML = video_title.innerHTML.slice(0, -4);
+  video_title.innerHTML = dir_msg + video_title.innerHTML;
+
+  //remove first element from array
+  array.shift();
 }
 
 function show_shuffle_msg(array, dir_msg) {
@@ -173,22 +175,23 @@ function show_shuffle_msg(array, dir_msg) {
       },
       closeTime: 30000,
     });
-  } else {
-    if (
-      $("video").attr("src") != "" &&
-      !dir_msg_collection.some((item) =>
-        $("#video_title").text().includes(item)
-      )
-    ) {
-      jquery_modal({
-        message:
-          "Queue gets priority over Randomizer. Wait for queued song to finish completely.",
-        title: "Finish Queued Song First",
-        buttonText: "Ok. I'll wait",
-        closeTime: 15000,
-      });
-    } else {
-      shuffler(array, dir_msg);
-    }
+    return;
   }
+
+  if (
+    $("video").attr("src") != "" &&
+    !dir_msg_collection.some((item) => $("#video_title").text().includes(item))
+  ) {
+    jquery_modal({
+      message:
+        "Queue gets priority over Randomizer. Wait for queued song to finish completely.",
+      title: "Finish Queued Song First",
+      buttonText: "Ok. I'll wait",
+      closeTime: 15000,
+    });
+    return;
+  }
+
+  //run the shuffler function if it passes the guard clauses above
+  shuffler(array, dir_msg);
 }
