@@ -157,7 +157,7 @@ const Keyboard = {
               $("#search_query").is(":visible") &&
               $("#search_query").val() != ""
             ) {
-              load_youtube();
+              load_youtube($("#search_query").val());
             }
             this.close();
           });
