@@ -80,3 +80,9 @@
   font-weight: bold;
   margin: -0.175vw;
 }
+
+/* youtube search - secondary button */
+#button-yt-second {
+  margin: auto;
+  padding: 1rem;
+}
