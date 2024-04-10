@@ -11,7 +11,6 @@ $(function () {
   });
 });
 
-
 function performSearch(searchId, excludeKey, searchMsg, searchKey = null) {
   var searchValue = $(`#${searchId}`).val();
 
@@ -27,12 +26,13 @@ function performSearch(searchId, excludeKey, searchMsg, searchKey = null) {
   var filteredResults = [];
 
   //search on the cache for the searchValue except for the excludeKey category
-  for (var key in cache) {
-    if (searchKey && key !== searchKey) continue;
-    if (!searchKey && key === excludeKey) continue;
+  cache.forEach(function (section) {
+    var key = Object.keys(section)[0];
+    if (searchKey && key !== searchKey) return;
+    if (!searchKey && key === excludeKey) return;
 
     var parser = new DOMParser();
-    var doc = parser.parseFromString(cache[key].response, "text/html");
+    var doc = parser.parseFromString(section[key], "text/html");
 
     // Iterate over each table element and get the last td element
     doc.querySelectorAll("table").forEach(function (row) {
@@ -52,16 +52,16 @@ function performSearch(searchId, excludeKey, searchMsg, searchKey = null) {
         });
       }
     });
-  }
+  });
 
   // Guard clause for no results
   if (filteredResults.length === 0) {
     $("#div_img_video_loader").html(
-      "<h3>No results found for your search <br>" +
-        "'" +
-        searchValue +
-        "'. <br><br>" +
-        "Try YouTube Search.</h3>"
+      `<h3>No results found for your search <br>'${searchValue}'.
+       <br><br>
+       <button class="button-yt" id="button-yt-second" onclick='load_youtube("${searchValue}")'>
+        Try YouTube Search
+       </button>`
     );
     return; // Exit function early
   }
