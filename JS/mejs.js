@@ -3,7 +3,7 @@
  * http://www.mediaelementjs.com/
  *
  * Wrapper that mimics native HTML5 MediaElement (audio and video)
- * using a variety of technologies (pure JavaScript, Flash, iframe)
+ * using a variety of technologies (pure JavaScript, iframe)
  *
  * Copyright 2010-2017, John Dyer (http://j.hn/)
  * License: MIT
@@ -68,7 +68,7 @@
           }
 
           module.exports = doccy;
-        }.call(
+        }).call(
           this,
           typeof global !== "undefined"
             ? global
@@ -77,7 +77,7 @@
             : typeof window !== "undefined"
             ? window
             : {}
-        ));
+        );
       },
       { 1: 1 },
     ],
@@ -97,7 +97,7 @@
           }
 
           module.exports = win;
-        }.call(
+        }).call(
           this,
           typeof global !== "undefined"
             ? global
@@ -106,7 +106,7 @@
             : typeof window !== "undefined"
             ? window
             : {}
-        ));
+        );
       },
       {},
     ],
@@ -571,7 +571,7 @@
 
         var _en = _dereq_(16);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -1085,7 +1085,7 @@
 
         exports.default = i18n;
       },
-      { 16: 16, 28: 28, 8: 8 },
+      { 16: 16, 26: 26, 8: 8 },
     ],
     7: [
       function (_dereq_, module, exports) {
@@ -1121,13 +1121,13 @@
 
         var _mejs2 = _interopRequireDefault(_mejs);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
-        var _media2 = _dereq_(30);
+        var _media2 = _dereq_(28);
 
         var _renderer = _dereq_(9);
 
-        var _constants = _dereq_(26);
+        var _constants = _dereq_(24);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -1153,11 +1153,7 @@
 
             fakeNodeName: "div",
 
-            pluginPath: "build/",
-
             iconSprite: "mejs-controls.svg",
-
-            shimScriptAccess: "sameDomain",
           };
 
           options = Object.assign(t.defaults, options);
@@ -1298,9 +1294,6 @@
               t.mediaElement.renderer.name === rendererName
             ) {
               t.mediaElement.renderer.pause();
-              if (t.mediaElement.renderer.stop) {
-                t.mediaElement.renderer.stop();
-              }
               t.mediaElement.renderer.show();
               t.mediaElement.renderer.setSrc(media);
               return true;
@@ -1311,9 +1304,6 @@
               t.mediaElement.renderer !== null
             ) {
               t.mediaElement.renderer.pause();
-              if (t.mediaElement.renderer.stop) {
-                t.mediaElement.renderer.stop();
-              }
               t.mediaElement.renderer.hide();
             }
 
@@ -1684,7 +1674,7 @@
 
         exports.default = MediaElement;
       },
-      { 2: 2, 26: 26, 28: 28, 3: 3, 30: 30, 8: 8, 9: 9 },
+      { 2: 2, 24: 24, 26: 26, 28: 28, 3: 3, 8: 8, 9: 9 },
     ],
     8: [
       function (_dereq_, module, exports) {
@@ -1704,7 +1694,7 @@
 
         var mejs = {};
 
-        mejs.version = "5.0.5";
+        mejs.version = "7.0.3";
 
         mejs.html5media = {
           properties: [
@@ -1885,11 +1875,7 @@
                 renderers = renderers.length ? renderers : this.order;
 
                 if (!renderersLength) {
-                  var rendererIndicator = [
-                      /^(html5|native)/i,
-                      /^flash/i,
-                      /iframe$/i,
-                    ],
+                  var rendererIndicator = [/^(html5|native)/i, /iframe$/i],
                     rendererRanking = function rendererRanking(renderer) {
                       for (
                         var i = 0, total = rendererIndicator.length;
@@ -1993,17 +1979,17 @@
 
         var _player2 = _interopRequireDefault(_player);
 
-        var _constants = _dereq_(26);
+        var _constants = _dereq_(24);
 
         var Features = _interopRequireWildcard(_constants);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
-        var _dom = _dereq_(27);
+        var _dom = _dereq_(25);
 
-        var _media = _dereq_(30);
+        var _media = _dereq_(28);
 
-        var _generate = _dereq_(29);
+        var _generate = _dereq_(27);
 
         function _interopRequireWildcard(obj) {
           if (obj && obj.__esModule) {
@@ -2410,7 +2396,7 @@
           },
         });
       },
-      { 17: 17, 2: 2, 26: 26, 27: 27, 28: 28, 29: 29, 3: 3, 30: 30, 6: 6 },
+      { 17: 17, 2: 2, 24: 24, 25: 25, 26: 26, 27: 27, 28: 28, 3: 3, 6: 6 },
     ],
     11: [
       function (_dereq_, module, exports) {
@@ -2428,11 +2414,11 @@
 
         var _i18n2 = _interopRequireDefault(_i18n);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
-        var _dom = _dereq_(27);
+        var _dom = _dereq_(25);
 
-        var _generate = _dereq_(29);
+        var _generate = _dereq_(27);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -2510,9 +2496,7 @@
             togglePlayPause("pse");
 
             media.addEventListener("loadedmetadata", function () {
-              if (media.rendererName.indexOf("flash") === -1) {
-                togglePlayPause("pse");
-              }
+              togglePlayPause("pse");
             });
             media.addEventListener("play", function () {
               togglePlayPause("play");
@@ -2533,7 +2517,7 @@
           },
         });
       },
-      { 17: 17, 2: 2, 27: 27, 28: 28, 29: 29, 6: 6 },
+      { 17: 17, 2: 2, 25: 25, 26: 26, 27: 27, 6: 6 },
     ],
     12: [
       function (_dereq_, module, exports) {
@@ -2551,11 +2535,11 @@
 
         var _i18n2 = _interopRequireDefault(_i18n);
 
-        var _constants = _dereq_(26);
+        var _constants = _dereq_(24);
 
-        var _time = _dereq_(32);
+        var _time = _dereq_(30);
 
-        var _dom = _dereq_(27);
+        var _dom = _dereq_(25);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -2655,7 +2639,7 @@
                     }
 
                     setTimeout(function () {
-                      player.setCurrentTime(newTime);
+                      player.setCurrentTime(newTime, true);
                     }, 0);
 
                     setTimeout(function () {
@@ -2693,7 +2677,7 @@
                     }
 
                     setTimeout(function () {
-                      player.setCurrentTime(newTime);
+                      player.setCurrentTime(newTime, true);
                     }, 0);
 
                     setTimeout(function () {
@@ -2939,7 +2923,7 @@
                   t.getCurrentTime() !== null &&
                   t.newTime.toFixed(4) !== t.getCurrentTime().toFixed(4)
                 ) {
-                  t.setCurrentTime(t.newTime);
+                  t.setCurrentTime(t.newTime, true);
                   t.setCurrentRailHandle(t.newTime);
                   t.updateCurrent(t.newTime);
                 }
@@ -3040,7 +3024,7 @@
                 }
 
                 setTimeout(function () {
-                  t.setCurrentTime(seekTime);
+                  t.setCurrentTime(seekTime, true);
                 }, 0);
 
                 if (seekTime < t.getDuration() && !startedPaused) {
@@ -3319,7 +3303,7 @@
           },
         });
       },
-      { 17: 17, 2: 2, 26: 26, 27: 27, 32: 32, 6: 6 },
+      { 17: 17, 2: 2, 24: 24, 25: 25, 30: 30, 6: 6 },
     ],
     13: [
       function (_dereq_, module, exports) {
@@ -3333,9 +3317,9 @@
 
         var _player2 = _interopRequireDefault(_player);
 
-        var _time = _dereq_(32);
+        var _time = _dereq_(30);
 
-        var _dom = _dereq_(27);
+        var _dom = _dereq_(25);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -3559,7 +3543,7 @@
           },
         });
       },
-      { 17: 17, 2: 2, 27: 27, 32: 32 },
+      { 17: 17, 2: 2, 25: 25, 30: 30 },
     ],
     14: [
       function (_dereq_, module, exports) {
@@ -3581,94 +3565,56 @@
 
         var _player2 = _interopRequireDefault(_player);
 
-        var _time = _dereq_(32);
+        var _general = _dereq_(26);
 
-        var _general = _dereq_(28);
+        var _dom = _dereq_(25);
 
-        var _dom = _dereq_(27);
-
-        var _generate = _dereq_(29);
+        var _generate = _dereq_(27);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
         }
 
         Object.assign(_player.config, {
-          startLanguage: "",
+          autoplayCaptionLanguage: null,
+
+          defaultTrackLine: -3,
 
           tracksText: null,
 
           chaptersText: null,
 
-          tracksAriaLive: false,
+          chaptersLanguage: null,
 
           hideCaptionsButtonWhenEmpty: true,
 
           toggleCaptionsButtonWhenOnlyOne: false,
-
-          slidesSelector: "",
         });
 
         Object.assign(_player2.default.prototype, {
           hasChapters: false,
 
-          buildtracks: function buildtracks(player, controls, layers, media) {
-            this.findTracks();
+          buildtracks: function buildtracks(player, controls) {
+            this.initTracks(player);
 
             if (
               !player.tracks.length &&
-              (!player.trackFiles || !player.trackFiles.length === 0)
+              (!player.trackFiles || !(player.trackFiles.length === 0))
             ) {
               return;
             }
 
             var t = this,
-              attr = t.options.tracksAriaLive
-                ? ' role="log" aria-live="assertive" aria-atomic="false"'
-                : "",
               tracksTitle = (0, _general.isString)(t.options.tracksText)
                 ? t.options.tracksText
                 : _i18n2.default.t("mejs.captions-subtitles"),
               chaptersTitle = (0, _general.isString)(t.options.chaptersText)
                 ? t.options.chaptersText
-                : _i18n2.default.t("mejs.captions-chapters"),
-              total =
-                player.trackFiles === null
-                  ? player.tracks.length
-                  : player.trackFiles.length;
+                : _i18n2.default.t("mejs.captions-chapters");
 
-            if (t.domNode.textTracks) {
-              for (var i = t.domNode.textTracks.length - 1; i >= 0; i--) {
-                t.domNode.textTracks[i].mode = "hidden";
-              }
-            }
+            t.hideAllTracks();
 
-            t.cleartracks(player);
-
-            player.captions = _document2.default.createElement("div");
-            player.captions.className =
-              t.options.classPrefix +
-              "captions-layer " +
-              t.options.classPrefix +
-              "layer";
-            player.captions.innerHTML =
-              '<div class="' +
-              t.options.classPrefix +
-              "captions-position " +
-              t.options.classPrefix +
-              'captions-position-hover"' +
-              attr +
-              ">" +
-              ('<span class="' +
-                t.options.classPrefix +
-                'captions-text"></span>') +
-              "</div>";
-            player.captions.style.display = "none";
-            layers.insertBefore(player.captions, layers.firstChild);
-
-            player.captionsText = player.captions.querySelector(
-              "." + t.options.classPrefix + "captions-text"
-            );
+            t.clearTrackHtml(player);
 
             player.captionsButton = _document2.default.createElement("div");
             player.captionsButton.className =
@@ -3749,25 +3695,25 @@
                 'chapters-selector-list"></ul>') +
               "</div>";
 
-            var subtitleCount = 0;
+            var subtitles = t.getSubtitles();
+            var chapters = t.getChapters();
 
-            for (var _i = 0; _i < total; _i++) {
-              var kind = player.tracks[_i].kind,
-                src = player.tracks[_i].src;
-              if (src.trim()) {
-                if (kind === "subtitles" || kind === "captions") {
-                  subtitleCount++;
-                } else if (
-                  kind === "chapters" &&
-                  !controls.querySelector(
-                    "." + t.options.classPrefix + "chapter-selector"
-                  )
-                ) {
-                  player.captionsButton.parentNode.insertBefore(
-                    player.chaptersButton,
-                    player.captionsButton
-                  );
-                }
+            if (
+              chapters.length > 0 &&
+              !controls.querySelector(
+                "." + t.options.classPrefix + "chapter-selector"
+              )
+            ) {
+              player.captionsButton.parentNode.insertBefore(
+                player.chaptersButton,
+                player.captionsButton
+              );
+            }
+
+            for (var i = 0; i < subtitles.length; i++) {
+              player.addTrackButton(subtitles[i]);
+              if (subtitles[i].isLoaded) {
+                t.enableTrackButton(subtitles[i]);
               }
             }
 
@@ -3775,33 +3721,20 @@
             player.selectedTrack = null;
             player.isLoadingTrack = false;
 
-            for (var _i2 = 0; _i2 < total; _i2++) {
-              var _kind = player.tracks[_i2].kind;
-              if (
-                player.tracks[_i2].src.trim() &&
-                (_kind === "subtitles" || _kind === "captions")
-              ) {
-                player.addTrackButton(
-                  player.tracks[_i2].trackId,
-                  player.tracks[_i2].srclang,
-                  player.tracks[_i2].label
-                );
-              }
-            }
-
-            player.loadNextTrack();
-
             var inEvents = ["mouseenter", "focusin"],
               outEvents = ["mouseleave", "focusout"];
 
             if (
               t.options.toggleCaptionsButtonWhenOnlyOne &&
-              subtitleCount === 1
+              subtitles.length === 1
             ) {
+              player.captionsButton.classList.add(
+                t.options.classPrefix + "captions-button-toggle"
+              );
               player.captionsButton.addEventListener("click", function (e) {
                 var trackId = "none";
                 if (player.selectedTrack === null) {
-                  trackId = player.tracks[0].trackId;
+                  trackId = player.getSubtitles()[0].trackId;
                 }
                 var keyboard = e.keyCode || e.which;
                 player.setTrack(trackId, typeof keyboard !== "undefined");
@@ -3813,9 +3746,9 @@
                 captions =
                   player.captionsButton.querySelectorAll("input[type=radio]");
 
-              for (var _i3 = 0, _total = inEvents.length; _i3 < _total; _i3++) {
+              for (var _i = 0; _i < inEvents.length; _i++) {
                 player.captionsButton.addEventListener(
-                  inEvents[_i3],
+                  inEvents[_i],
                   function () {
                     (0, _dom.removeClass)(
                       this.querySelector(
@@ -3827,37 +3760,34 @@
                 );
               }
 
-              for (
-                var _i4 = 0, _total2 = outEvents.length;
-                _i4 < _total2;
-                _i4++
-              ) {
+              for (var _i2 = 0; _i2 < outEvents.length; _i2++) {
                 player.captionsButton.addEventListener(
-                  outEvents[_i4],
+                  outEvents[_i2],
                   function () {
-                    (0, _dom.addClass)(
-                      this.querySelector(
-                        "." + t.options.classPrefix + "captions-selector"
-                      ),
-                      t.options.classPrefix + "offscreen"
-                    );
+                    var _this = this;
+
+                    setTimeout(function () {
+                      (0,
+                      _dom.addClass)(_this.querySelector("." + t.options.classPrefix + "captions-selector"), t.options.classPrefix + "offscreen");
+                    }, 0);
                   }
                 );
               }
 
-              for (
-                var _i5 = 0, _total3 = captions.length;
-                _i5 < _total3;
-                _i5++
-              ) {
-                captions[_i5].addEventListener("click", function (e) {
+              for (var _i3 = 0; _i3 < captions.length; _i3++) {
+                captions[_i3].addEventListener("click", function (e) {
                   var keyboard = e.keyCode || e.which;
-                  player.setTrack(this.value, typeof keyboard !== "undefined");
+                  if (!e.target.disabled) {
+                    player.setTrack(
+                      this.value,
+                      typeof keyboard !== "undefined"
+                    );
+                  }
                 });
               }
 
-              for (var _i6 = 0, _total4 = labels.length; _i6 < _total4; _i6++) {
-                labels[_i6].addEventListener("click", function (e) {
+              for (var _i4 = 0; _i4 < labels.length; _i4++) {
+                labels[_i4].addEventListener("click", function (e) {
                   var radio = (0, _dom.siblings)(this, function (el) {
                       return el.tagName === "INPUT";
                     })[0],
@@ -3872,9 +3802,9 @@
               });
             }
 
-            for (var _i7 = 0, _total5 = inEvents.length; _i7 < _total5; _i7++) {
+            for (var _i5 = 0; _i5 < inEvents.length; _i5++) {
               player.chaptersButton.addEventListener(
-                inEvents[_i7],
+                inEvents[_i5],
                 function () {
                   if (
                     this.querySelector(
@@ -3892,20 +3822,16 @@
               );
             }
 
-            for (
-              var _i8 = 0, _total6 = outEvents.length;
-              _i8 < _total6;
-              _i8++
-            ) {
+            for (var _i6 = 0; _i6 < outEvents.length; _i6++) {
               player.chaptersButton.addEventListener(
-                outEvents[_i8],
+                outEvents[_i6],
                 function () {
-                  (0, _dom.addClass)(
-                    this.querySelector(
-                      "." + t.options.classPrefix + "chapters-selector"
-                    ),
-                    t.options.classPrefix + "offscreen"
-                  );
+                  var _this2 = this;
+
+                  setTimeout(function () {
+                    (0,
+                    _dom.addClass)(_this2.querySelector("." + t.options.classPrefix + "chapters-selector"), t.options.classPrefix + "offscreen");
+                  }, 0);
                 }
               );
             }
@@ -3914,64 +3840,11 @@
               e.stopPropagation();
             });
 
-            if (!player.options.alwaysShowControls) {
-              player
-                .getElement(player.container)
-                .addEventListener("controlsshown", function () {
-                  (0,
-                  _dom.addClass)(player.getElement(player.container).querySelector("." + t.options.classPrefix + "captions-position"), t.options.classPrefix + "captions-position-hover");
-                });
-
-              player
-                .getElement(player.container)
-                .addEventListener("controlshidden", function () {
-                  if (!media.paused) {
-                    (0, _dom.removeClass)(
-                      player
-                        .getElement(player.container)
-                        .querySelector(
-                          "." + t.options.classPrefix + "captions-position"
-                        ),
-                      t.options.classPrefix + "captions-position-hover"
-                    );
-                  }
-                });
-            } else {
-              (0, _dom.addClass)(
-                player
-                  .getElement(player.container)
-                  .querySelector(
-                    "." + t.options.classPrefix + "captions-position"
-                  ),
-                t.options.classPrefix + "captions-position-hover"
-              );
-            }
-
-            media.addEventListener("timeupdate", function () {
-              player.displayCaptions();
-            });
-
-            if (player.options.slidesSelector !== "") {
-              player.slidesContainer = _document2.default.querySelectorAll(
-                player.options.slidesSelector
-              );
-
-              media.addEventListener("timeupdate", function () {
-                player.displaySlides();
-              });
-            }
+            t.checkAllCaptionsLoadedOrError();
+            t.checkAllChaptersLoadedOrError();
           },
-          cleartracks: function cleartracks(player) {
+          clearTrackHtml: function clearTrackHtml(player) {
             if (player) {
-              if (player.captions) {
-                player.captions.remove();
-              }
-              if (player.chapters) {
-                player.chapters.remove();
-              }
-              if (player.captionsText) {
-                player.captionsText.remove();
-              }
               if (player.captionsButton) {
                 player.captionsButton.remove();
               }
@@ -3980,47 +3853,188 @@
               }
             }
           },
-          rebuildtracks: function rebuildtracks() {
-            var t = this;
-            t.findTracks();
-            t.buildtracks(
-              t,
-              t.getElement(t.controls),
-              t.getElement(t.layers),
-              t.media
-            );
-          },
-          findTracks: function findTracks() {
+          initTracks: function initTracks(player) {
             var t = this,
-              tracktags =
+              trackFiles =
                 t.trackFiles === null
                   ? t.node.querySelectorAll("track")
-                  : t.trackFiles,
-              total = tracktags.length;
+                  : t.trackFiles;
 
             t.tracks = [];
-            for (var i = 0; i < total; i++) {
-              var track = tracktags[i],
-                srclang = track.getAttribute("srclang").toLowerCase() || "",
-                trackId =
-                  t.id +
-                  "_track_" +
-                  i +
-                  "_" +
-                  track.getAttribute("kind") +
-                  "_" +
-                  srclang;
-              t.tracks.push({
-                trackId: trackId,
-                srclang: srclang,
-                src: track.getAttribute("src"),
-                kind: track.getAttribute("kind"),
-                label: track.getAttribute("label") || "",
-                entries: [],
-                isLoaded: false,
-              });
+
+            if (trackFiles) {
+              player.trackFiles = trackFiles;
+              for (var i = 0; i < trackFiles.length; i++) {
+                var track = trackFiles[i],
+                  srclang = track.getAttribute("srclang").toLowerCase() || "",
+                  trackId =
+                    track.getAttribute("id") ||
+                    t.id +
+                      "_track_" +
+                      i +
+                      "_" +
+                      track.getAttribute("kind") +
+                      "_" +
+                      srclang;
+                track.setAttribute("id", trackId);
+
+                var trackData = {
+                  trackId: trackId,
+                  srclang: srclang,
+                  src: track.getAttribute("src"),
+                  kind: track.getAttribute("kind"),
+                  label: track.getAttribute("label") || "",
+                  entries: [],
+                  isDefault: track.hasAttribute("default"),
+                  isError: false,
+                  isLoaded: false,
+                };
+                t.tracks.push(trackData);
+
+                if (
+                  track.getAttribute("kind") === "captions" ||
+                  track.getAttribute("kind") === "subtitles"
+                ) {
+                  switch (track.readyState) {
+                    case 2:
+                      t.handleCaptionsLoaded(track);
+                      break;
+                    case 3:
+                      t.handleCaptionsError(track);
+                      break;
+                    default:
+                      track.addEventListener("load", function (event) {
+                        t.handleCaptionsLoaded(event.target);
+                      });
+                      track.addEventListener("error", function (event) {
+                        t.handleCaptionsError(event.target);
+                      });
+                      break;
+                  }
+                } else if (track.getAttribute("kind") === "chapters") {
+                  switch (track.readyState) {
+                    case 2:
+                      t.handleChaptersLoaded(track);
+                      break;
+                    case 3:
+                      t.handleChaptersError(track);
+                      break;
+                    default:
+                      track.addEventListener("load", function (event) {
+                        t.handleChaptersLoaded(event.target);
+                      });
+                      track.addEventListener("error", function (event) {
+                        t.handleChaptersError(event.target);
+                      });
+                      break;
+                  }
+                }
+              }
             }
           },
+          handleCaptionsLoaded: function handleCaptionsLoaded(target) {
+            var textTracks = this.node.textTracks,
+              playerTrack = this.getTrackById(target.getAttribute("id"));
+
+            if (Number.isInteger(this.options.defaultTrackLine)) {
+              for (var i = 0; i < textTracks.length; i++) {
+                if (
+                  target.getAttribute("srclang") === textTracks[i].language &&
+                  target.getAttribute("kind") === textTracks[i].kind
+                ) {
+                  var cues = textTracks[i].cues;
+                  for (var c = 0; c < cues.length; c++) {
+                    if (
+                      cues[c].line === "auto" ||
+                      cues[c].line === undefined ||
+                      cues[c].line === null
+                    ) {
+                      cues[c].line = this.options.defaultTrackLine;
+                    }
+                  }
+                  break;
+                }
+              }
+            }
+
+            playerTrack.isLoaded = true;
+            this.enableTrackButton(playerTrack);
+            this.checkAllCaptionsLoadedOrError();
+          },
+          handleCaptionsError: function handleCaptionsError(target) {
+            var playerTrack = this.getTrackById(target.getAttribute("id"));
+
+            playerTrack.isError = true;
+            this.removeTrackButton(playerTrack);
+            this.checkAllCaptionsLoadedOrError();
+          },
+          handleChaptersLoaded: function handleChaptersLoaded(target) {
+            var playerTrack = this.getTrackById(target.getAttribute("id"));
+
+            this.hasChapters = true;
+            playerTrack.isLoaded = true;
+            this.checkAllChaptersLoadedOrError();
+          },
+          handleChaptersError: function handleChaptersError(target) {
+            var playerTrack = this.getTrackById(target.getAttribute("id"));
+            playerTrack.isError = true;
+            this.checkAllChaptersLoadedOrError();
+          },
+          checkAllCaptionsLoadedOrError:
+            function checkAllCaptionsLoadedOrError() {
+              var subtitles = this.getSubtitles();
+              if (
+                subtitles.length ===
+                subtitles.filter(function (_ref) {
+                  var isLoaded = _ref.isLoaded,
+                    isError = _ref.isError;
+                  return isLoaded || isError;
+                }).length
+              ) {
+                this.removeCaptionsIfEmpty();
+                this.checkForAutoPlay();
+              }
+            },
+          checkAllChaptersLoadedOrError:
+            function checkAllChaptersLoadedOrError() {
+              var _this3 = this;
+
+              var chapters = this.getChapters(),
+                readyChapters = chapters.filter(function (_ref2) {
+                  var isLoaded = _ref2.isLoaded;
+                  return isLoaded;
+                });
+              if (
+                chapters.length ===
+                chapters.filter(function (_ref3) {
+                  var isLoaded = _ref3.isLoaded,
+                    isError = _ref3.isError;
+                  return isLoaded || isError;
+                }).length
+              ) {
+                if (readyChapters.length === 0) {
+                  this.chaptersButton.remove();
+                } else {
+                  var langChapter = readyChapters.find(function (_ref4) {
+                    var srclang = _ref4.srclang;
+                    return srclang === _this3.options.chaptersLanguage;
+                  });
+
+                  langChapter =
+                    langChapter ||
+                    readyChapters.find(function (_ref5) {
+                      var srclang = _ref5.srclang;
+                      return srclang === _i18n2.default.lang;
+                    });
+
+                  if (readyChapters.length === 1 || !langChapter) {
+                    this.drawChapters(readyChapters[0].trackId);
+                  } else {
+                    this.drawChapters(langChapter.trackId);
+                  }
+                }
+              }
+            },
           setTrack: function setTrack(trackId, setByKeyboard) {
             var t = this,
               radios = t.captionsButton.querySelectorAll('input[type="radio"]'),
@@ -4031,13 +4045,13 @@
                 'input[value="' + trackId + '"]'
               );
 
-            for (var i = 0, total = radios.length; i < total; i++) {
+            for (var i = 0; i < radios.length; i++) {
               radios[i].checked = false;
             }
 
-            for (var _i9 = 0, _total7 = captions.length; _i9 < _total7; _i9++) {
+            for (var _i7 = 0; _i7 < captions.length; _i7++) {
               (0, _dom.removeClass)(
-                captions[_i9],
+                captions[_i7],
                 t.options.classPrefix + "captions-selected"
               );
             }
@@ -4047,13 +4061,9 @@
               return (0,
               _dom.hasClass)(el, t.options.classPrefix + "captions-selector-label");
             });
-            for (
-              var _i10 = 0, _total8 = labels.length;
-              _i10 < _total8;
-              _i10++
-            ) {
+            for (var _i8 = 0; _i8 < labels.length; _i8++) {
               (0, _dom.addClass)(
-                labels[_i10],
+                labels[_i8],
                 t.options.classPrefix + "captions-selected"
               );
             }
@@ -4064,25 +4074,18 @@
                 t.captionsButton,
                 t.options.classPrefix + "captions-enabled"
               );
+              t.deactivateVideoTracks();
             } else {
-              for (
-                var _i11 = 0, _total9 = t.tracks.length;
-                _i11 < _total9;
-                _i11++
-              ) {
-                var _track = t.tracks[_i11];
-                if (_track.trackId === trackId) {
-                  if (t.selectedTrack === null) {
-                    (0, _dom.addClass)(
-                      t.captionsButton,
-                      t.options.classPrefix + "captions-enabled"
-                    );
-                  }
-                  t.selectedTrack = _track;
-                  t.captions.setAttribute("lang", t.selectedTrack.srclang);
-                  t.displayCaptions();
-                  break;
+              var _track = t.getTrackById(trackId);
+              if (_track) {
+                if (t.selectedTrack === null) {
+                  (0, _dom.addClass)(
+                    t.captionsButton,
+                    t.options.classPrefix + "captions-enabled"
+                  );
                 }
+                t.selectedTrack = _track;
+                t.activateVideoTrack(t.selectedTrack.srclang);
               }
             }
 
@@ -4096,58 +4099,97 @@
               }, 500);
             }
           },
-          loadNextTrack: function loadNextTrack() {
-            var t = this;
-
-            t.trackToLoad++;
-            if (t.trackToLoad < t.tracks.length) {
-              t.isLoadingTrack = true;
-              t.loadTrack(t.trackToLoad);
-            } else {
-              t.isLoadingTrack = false;
-              t.checkForTracks();
+          hideAllTracks: function hideAllTracks() {
+            if (this.node.textTracks) {
+              for (var i = 0; i < this.node.textTracks.length; i++) {
+                this.node.textTracks[i].mode = "hidden";
+              }
             }
           },
-          loadTrack: function loadTrack(index) {
-            var t = this,
-              track = t.tracks[index];
-
-            if (
-              track !== undefined &&
-              (track.src !== undefined || track.src !== "")
-            ) {
-              (0, _dom.ajax)(
-                track.src,
-                "text",
-                function (d) {
-                  track.entries =
-                    typeof d === "string" && /<tt\s+xml/gi.exec(d)
-                      ? _mejs2.default.TrackFormatParser.dfxp.parse(d)
-                      : _mejs2.default.TrackFormatParser.webvtt.parse(d);
-
-                  track.isLoaded = true;
-                  t.enableTrackButton(track);
-                  t.loadNextTrack();
-
-                  if (track.kind === "slides") {
-                    t.setupSlides(track);
-                  } else if (track.kind === "chapters" && !t.hasChapters) {
-                    t.drawChapters(track);
-                    t.hasChapters = true;
-                  }
-                },
-                function () {
-                  t.removeTrackButton(track.trackId);
-                  t.loadNextTrack();
+          deactivateVideoTracks: function deactivateVideoTracks() {
+            if (this.node.textTracks) {
+              for (var i = 0; i < this.node.textTracks.length; i++) {
+                var track = this.node.textTracks[i];
+                if (track.kind === "subtitles" || track.kind === "captions") {
+                  track.mode = "hidden";
                 }
+              }
+            }
+            if (
+              this.options.toggleCaptionsButtonWhenOnlyOne &&
+              this.getSubtitles().length === 1
+            ) {
+              this.captionsButton.classList.remove(
+                this.options.classPrefix + "captions-button-toggle-on"
               );
+            }
+          },
+          activateVideoTrack: function activateVideoTrack(srclang) {
+            for (var i = 0; i < this.node.textTracks.length; i++) {
+              var track = this.node.textTracks[i];
+
+              if (track.kind === "subtitles" || track.kind === "captions") {
+                if (track.language === srclang) {
+                  track.mode = "showing";
+                  if (
+                    this.options.toggleCaptionsButtonWhenOnlyOne &&
+                    this.getSubtitles().length === 1
+                  ) {
+                    this.captionsButton.classList.add(
+                      this.options.classPrefix + "captions-button-toggle-on"
+                    );
+                  }
+                } else {
+                  track.mode = "hidden";
+                }
+              }
+            }
+          },
+          checkForAutoPlay: function checkForAutoPlay() {
+            var _this4 = this;
+
+            var readySubtitles = this.getSubtitles().filter(function (_ref6) {
+                var isError = _ref6.isError;
+                return !isError;
+              }),
+              autoplayTrack =
+                readySubtitles.find(function (_ref7) {
+                  var srclang = _ref7.srclang;
+                  return _this4.options.autoplayCaptionLanguage === srclang;
+                }) ||
+                readySubtitles.find(function (_ref8) {
+                  var isDefault = _ref8.isDefault;
+                  return isDefault;
+                });
+
+            if (autoplayTrack) {
+              if (
+                this.options.toggleCaptionsButtonWhenOnlyOne &&
+                readySubtitles.length === 1 &&
+                this.captionsButton
+              ) {
+                this.captionsButton.dispatchEvent(
+                  (0, _general.createEvent)("click", this.captionsButton)
+                );
+              } else {
+                var target = _document2.default.getElementById(
+                  autoplayTrack.trackId + "-btn"
+                );
+                if (target) {
+                  target.checked = true;
+                  target.dispatchEvent(
+                    (0, _general.createEvent)("click", target)
+                  );
+                }
+              }
             }
           },
           enableTrackButton: function enableTrackButton(track) {
             var t = this,
               lang = track.srclang,
-              target = _document2.default.getElementById("" + track.trackId);
-
+              target = _document2.default.getElementById(
+                track.trackId + "-btn"
+              );
             if (!target) {
               return;
             }
@@ -4163,18 +4205,14 @@
               return (0,
               _dom.hasClass)(el, t.options.classPrefix + "captions-selector-label");
             });
-            for (var i = 0, total = targetSiblings.length; i < total; i++) {
+            for (var i = 0; i < targetSiblings.length; i++) {
               targetSiblings[i].innerHTML = label;
             }
-
-            if (t.options.startLanguage === lang) {
-              target.checked = true;
-              var event = (0, _general.createEvent)("click", target);
-              target.dispatchEvent(event);
-            }
           },
-          removeTrackButton: function removeTrackButton(trackId) {
-            var element = _document2.default.getElementById("" + trackId);
+          removeTrackButton: function removeTrackButton(track) {
+            var element = _document2.default.getElementById(
+              track.trackId + "-btn"
+            );
             if (element) {
               var button = element.closest("li");
               if (button) {
@@ -4182,12 +4220,14 @@
               }
             }
           },
-          addTrackButton: function addTrackButton(trackId, lang, label) {
-            var t = this;
-            if (label === "") {
+          addTrackButton: function addTrackButton(track) {
+            var t = this,
               label =
-                _i18n2.default.t(_mejs2.default.language.codes[lang]) || lang;
-            }
+                track.label ||
+                _i18n2.default.t(
+                  _mejs2.default.language.codes[track.srclang]
+                ) ||
+                track.srclang;
 
             t.captionsButton.querySelector("ul").innerHTML +=
               '<li class="' +
@@ -4199,163 +4239,42 @@
               ('name="' +
                 t.id +
                 '_captions" id="' +
-                trackId +
-                '" value="' +
-                trackId +
+                track.trackId +
+                '-btn" value="' +
+                track.trackId +
                 '" disabled>') +
               ('<label class="' +
                 t.options.classPrefix +
                 'captions-selector-label"') +
-              ('for="' + trackId + '">' + label + " (loading)</label>") +
+              ('for="' + track.trackId + '">' + label + " (loading)</label>") +
               "</li>";
           },
-          checkForTracks: function checkForTracks() {
-            var t = this;
-
-            var hasSubtitles = false;
-
-            if (t.options.hideCaptionsButtonWhenEmpty) {
-              for (var i = 0, total = t.tracks.length; i < total; i++) {
-                var kind = t.tracks[i].kind;
-                if (
-                  (kind === "subtitles" || kind === "captions") &&
-                  t.tracks[i].isLoaded
-                ) {
-                  hasSubtitles = true;
-                  break;
-                }
-              }
-
-              t.captionsButton.style.display = hasSubtitles ? "" : "none";
-              t.setControlsSize();
+          removeCaptionsIfEmpty: function removeCaptionsIfEmpty() {
+            if (
+              this.captionsButton &&
+              this.options.hideCaptionsButtonWhenEmpty
+            ) {
+              var subtitleCount = this.getSubtitles().filter(function (_ref9) {
+                var isError = _ref9.isError;
+                return !isError;
+              }).length;
+              this.captionsButton.style.display =
+                subtitleCount > 0 ? "" : "none";
+              this.setControlsSize();
             }
           },
-          displayCaptions: function displayCaptions() {
-            if (this.tracks === undefined) {
-              return;
-            }
-
+          drawChapters: function drawChapters(chapterTrackId) {
             var t = this,
-              track = t.selectedTrack,
-              sanitize = function sanitize(html) {
-                var div = _document2.default.createElement("div");
-                div.innerHTML = html;
+              chapter = this.node.textTracks.getTrackById(chapterTrackId),
+              numberOfChapters = chapter.cues.length;
 
-                var scripts = div.getElementsByTagName("script");
-                var i = scripts.length;
-                while (i--) {
-                  scripts[i].remove();
-                }
-
-                var allElements = div.getElementsByTagName("*");
-                for (var _i12 = 0, n = allElements.length; _i12 < n; _i12++) {
-                  var attributesObj = allElements[_i12].attributes,
-                    attributes = Array.prototype.slice.call(attributesObj);
-
-                  for (var j = 0, total = attributes.length; j < total; j++) {
-                    if (
-                      attributes[j].name.startsWith("on") ||
-                      attributes[j].value.startsWith("javascript")
-                    ) {
-                      allElements[_i12].remove();
-                    } else if (attributes[j].name === "style") {
-                      allElements[_i12].removeAttribute(attributes[j].name);
-                    }
-                  }
-                }
-                return div.innerHTML;
-              };
-
-            if (track !== null && track.isLoaded) {
-              var i = t.searchTrackPosition(track.entries, t.media.currentTime);
-              if (i > -1) {
-                var text = track.entries[i].text;
-                if (typeof t.options.captionTextPreprocessor === "function")
-                  text = t.options.captionTextPreprocessor(text);
-                t.captionsText.innerHTML = sanitize(text);
-                t.captionsText.className =
-                  t.options.classPrefix +
-                  "captions-text " +
-                  (track.entries[i].identifier || "");
-                t.captions.style.display = "";
-                t.captions.style.height = "0px";
-                return;
-              }
-              t.captions.style.display = "none";
-            } else {
-              t.captions.style.display = "none";
-            }
-          },
-          setupSlides: function setupSlides(track) {
-            var t = this;
-            t.slides = track;
-            t.slides.entries.imgs = [t.slides.entries.length];
-            t.showSlide(0);
-          },
-          showSlide: function showSlide(index) {
-            var _this = this;
-
-            var t = this;
-
-            if (t.tracks === undefined || t.slidesContainer === undefined) {
-              return;
-            }
-
-            var url = t.slides.entries[index].text;
-
-            var img = t.slides.entries[index].imgs;
-
-            if (img === undefined || img.fadeIn === undefined) {
-              var image = _document2.default.createElement("img");
-              image.src = url;
-              image.addEventListener("load", function () {
-                var self = _this,
-                  visible = (0, _dom.siblings)(self, function (el) {
-                    return visible(el);
-                  });
-                self.style.display = "none";
-                t.slidesContainer.innerHTML += self.innerHTML;
-                (0, _dom.fadeIn)(t.slidesContainer.querySelector(image));
-                for (var i = 0, total = visible.length; i < total; i++) {
-                  (0, _dom.fadeOut)(visible[i], 400);
-                }
-              });
-              t.slides.entries[index].imgs = img = image;
-            } else if (!(0, _dom.visible)(img)) {
-              var _visible = (0, _dom.siblings)(self, function (el) {
-                return _visible(el);
-              });
-              (0, _dom.fadeIn)(t.slidesContainer.querySelector(img));
-              for (var i = 0, total = _visible.length; i < total; i++) {
-                (0, _dom.fadeOut)(_visible[i]);
-              }
-            }
-          },
-          displaySlides: function displaySlides() {
-            var t = this;
-
-            if (this.slides === undefined) {
-              return;
-            }
-
-            var slides = t.slides,
-              i = t.searchTrackPosition(slides.entries, t.media.currentTime);
-
-            if (i > -1) {
-              t.showSlide(i);
-            }
-          },
-          drawChapters: function drawChapters(chapters) {
-            var t = this,
-              total = chapters.entries.length;
-
-            if (!total) {
+            if (!numberOfChapters) {
               return;
             }
 
             t.chaptersButton.querySelector("ul").innerHTML = "";
 
-            for (var i = 0; i < total; i++) {
+            for (var i = 0; i < numberOfChapters; i++) {
               t.chaptersButton.querySelector("ul").innerHTML +=
                 '<li class="' +
                 t.options.classPrefix +
@@ -4371,7 +4290,7 @@
                   "_chapters_" +
                   i +
                   '" value="' +
-                  chapters.entries[i].start +
+                  chapter.cues[i].startTime +
                   '" disabled>') +
                 ('<label class="' +
                   t.options.classPrefix +
@@ -4381,7 +4300,7 @@
                   "_chapters_" +
                   i +
                   '">' +
-                  chapters.entries[i].text +
+                  chapter.cues[i].text +
                   "</label>") +
                 "</li>";
             }
@@ -4393,14 +4312,10 @@
                 "." + t.options.classPrefix + "chapters-selector-label"
               );
 
-            for (
-              var _i13 = 0, _total10 = radios.length;
-              _i13 < _total10;
-              _i13++
-            ) {
-              radios[_i13].disabled = false;
-              radios[_i13].checked = false;
-              radios[_i13].addEventListener("click", function (e) {
+            for (var _i9 = 0; _i9 < radios.length; _i9++) {
+              radios[_i9].disabled = false;
+              radios[_i9].checked = false;
+              radios[_i9].addEventListener("click", function (e) {
                 var self = this,
                   listItems = t.chaptersButton.querySelectorAll("li"),
                   label = (0, _dom.siblings)(self, function (el) {
@@ -4415,12 +4330,8 @@
                 (0,
                 _dom.removeClass)(t.chaptersButton.querySelector("." + t.options.classPrefix + "chapters-selected"), t.options.classPrefix + "chapters-selected");
 
-                for (
-                  var _i14 = 0, _total11 = listItems.length;
-                  _i14 < _total11;
-                  _i14++
-                ) {
-                  listItems[_i14].setAttribute("aria-checked", false);
+                for (var _i10 = 0; _i10 < listItems.length; _i10++) {
+                  listItems[_i10].setAttribute("aria-checked", false);
                 }
 
                 var keyboard = e.keyCode || e.which;
@@ -4437,12 +4348,8 @@
               });
             }
 
-            for (
-              var _i15 = 0, _total12 = labels.length;
-              _i15 < _total12;
-              _i15++
-            ) {
-              labels[_i15].addEventListener("click", function (e) {
+            for (var _i11 = 0; _i11 < labels.length; _i11++) {
+              labels[_i11].addEventListener("click", function (e) {
                 var radio = (0, _dom.siblings)(this, function (el) {
                     return el.tagName === "INPUT";
                   })[0],
@@ -4451,6 +4358,23 @@
                 e.preventDefault();
               });
             }
+          },
+          getTrackById: function getTrackById(trackId) {
+            return this.tracks.find(function (track) {
+              return track.trackId === trackId;
+            });
+          },
+          getChapters: function getChapters() {
+            return this.tracks.filter(function (_ref10) {
+              var kind = _ref10.kind;
+              return kind === "chapters";
+            });
+          },
+          getSubtitles: function getSubtitles() {
+            return this.tracks.filter(function (_ref11) {
+              var kind = _ref11.kind;
+              return kind === "subtitles" || kind === "captions";
+            });
           },
           searchTrackPosition: function searchTrackPosition(
             tracks,
@@ -4539,148 +4463,8 @@
             yi: "mejs.yiddish",
           },
         };
-
-        _mejs2.default.TrackFormatParser = {
-          webvtt: {
-            pattern:
-              /^((?:[0-9]{1,2}:)?[0-9]{2}:[0-9]{2}([,.][0-9]{1,3})?) --\> ((?:[0-9]{1,2}:)?[0-9]{2}:[0-9]{2}([,.][0-9]{3})?)(.*)$/,
-
-            parse: function parse(trackText) {
-              var lines = trackText.split(/\r?\n/),
-                entries = [];
-
-              var timecode = void 0,
-                text = void 0,
-                identifier = void 0;
-
-              for (var i = 0, total = lines.length; i < total; i++) {
-                timecode = this.pattern.exec(lines[i]);
-
-                if (timecode && i < lines.length) {
-                  if (i - 1 >= 0 && lines[i - 1] !== "") {
-                    identifier = lines[i - 1];
-                  }
-                  i++;
-
-                  text = lines[i];
-                  i++;
-                  while (lines[i] !== "" && i < lines.length) {
-                    text = text + "\n" + lines[i];
-                    i++;
-                  }
-                  text =
-                    text === null
-                      ? ""
-                      : text
-                          .trim()
-                          .replace(
-                            /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi,
-                            "<a href='$1' target='_blank'>$1</a>"
-                          );
-                  entries.push({
-                    identifier: identifier,
-                    start:
-                      (0, _time.convertSMPTEtoSeconds)(timecode[1]) === 0
-                        ? 0.2
-                        : (0, _time.convertSMPTEtoSeconds)(timecode[1]),
-                    stop: (0, _time.convertSMPTEtoSeconds)(timecode[3]),
-                    text: text,
-                    settings: timecode[5],
-                  });
-                }
-                identifier = "";
-              }
-              return entries;
-            },
-          },
-
-          dfxp: {
-            parse: function parse(trackText) {
-              var trackElem = _document2.default.adoptNode(
-                  new DOMParser().parseFromString(trackText, "application/xml")
-                    .documentElement
-                ),
-                container = trackElem.querySelector("div"),
-                lines = container.querySelectorAll("p"),
-                styleNode = _document2.default.getElementById(
-                  container.getAttribute("style")
-                ),
-                entries = [];
-
-              var styles = void 0;
-
-              if (styleNode) {
-                styleNode.removeAttribute("id");
-                var attributes = styleNode.attributes;
-                if (attributes.length) {
-                  styles = {};
-                  for (var i = 0, total = attributes.length; i < total; i++) {
-                    styles[attributes[i].name.split(":")[1]] =
-                      attributes[i].value;
-                  }
-                }
-              }
-
-              for (
-                var _i16 = 0, _total13 = lines.length;
-                _i16 < _total13;
-                _i16++
-              ) {
-                var style = void 0,
-                  _temp = {
-                    start: null,
-                    stop: null,
-                    style: null,
-                    text: null,
-                  };
-
-                if (lines[_i16].getAttribute("begin")) {
-                  _temp.start = (0, _time.convertSMPTEtoSeconds)(
-                    lines[_i16].getAttribute("begin")
-                  );
-                }
-                if (!_temp.start && lines[_i16 - 1].getAttribute("end")) {
-                  _temp.start = (0, _time.convertSMPTEtoSeconds)(
-                    lines[_i16 - 1].getAttribute("end")
-                  );
-                }
-                if (lines[_i16].getAttribute("end")) {
-                  _temp.stop = (0, _time.convertSMPTEtoSeconds)(
-                    lines[_i16].getAttribute("end")
-                  );
-                }
-                if (!_temp.stop && lines[_i16 + 1].getAttribute("begin")) {
-                  _temp.stop = (0, _time.convertSMPTEtoSeconds)(
-                    lines[_i16 + 1].getAttribute("begin")
-                  );
-                }
-
-                if (styles) {
-                  style = "";
-                  for (var _style in styles) {
-                    style += _style + ": " + styles[_style] + ";";
-                  }
-                }
-                if (style) {
-                  _temp.style = style;
-                }
-                if (_temp.start === 0) {
-                  _temp.start = 0.2;
-                }
-                _temp.text = lines[_i16].innerHTML
-                  .trim()
-                  .replace(
-                    /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_| !:, .; ]*[-A-Z0-9+&@#\/%=~_|])/gi,
-                    "<a href='$1' target='_blank'>$1</a>"
-                  );
-                entries.push(_temp);
-              }
-              return entries;
-            },
-          },
-        };
       },
-      { 17: 17, 2: 2, 27: 27, 28: 28, 29: 29, 32: 32, 6: 6, 8: 8 },
+      { 17: 17, 2: 2, 25: 25, 26: 26, 27: 27, 6: 6, 8: 8 },
     ],
     15: [
       function (_dereq_, module, exports) {
@@ -4698,13 +4482,13 @@
 
         var _i18n2 = _interopRequireDefault(_i18n);
 
-        var _constants = _dereq_(26);
+        var _constants = _dereq_(24);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
-        var _dom = _dereq_(27);
+        var _dom = _dereq_(25);
 
-        var _generate = _dereq_(29);
+        var _generate = _dereq_(27);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -5152,16 +4936,17 @@
               handleVolumeMove(e);
               t.globalBind("mousemove.vol", function (event) {
                 var target = event.target;
+
+                var targetHasClosest = typeof target.closest == "function";
+                var targetSliderElement = target.closest(
+                  mode === "vertical"
+                    ? "." + t.options.classPrefix + "volume-slider"
+                    : "." + t.options.classPrefix + "horizontal-volume-slider"
+                );
                 if (
                   mouseIsDown &&
                   (target === volumeSlider ||
-                    target.closest(
-                      mode === "vertical"
-                        ? "." + t.options.classPrefix + "volume-slider"
-                        : "." +
-                            t.options.classPrefix +
-                            "horizontal-volume-slider"
-                    ))
+                    (targetHasClosest && targetSliderElement))
                 ) {
                   handleVolumeMove(event);
                 }
@@ -5237,7 +5022,7 @@
           },
         });
       },
-      { 17: 17, 2: 2, 26: 26, 27: 27, 28: 28, 29: 29, 6: 6 },
+      { 17: 17, 2: 2, 24: 24, 25: 25, 26: 26, 27: 27, 6: 6 },
     ],
     16: [
       function (_dereq_, module, exports) {
@@ -5250,9 +5035,6 @@
           "mejs.plural-form": 1,
 
           "mejs.download-file": "Download File",
-
-          "mejs.install-flash":
-            "You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https://get.adobe.com/flashplayer/",
 
           "mejs.fullscreen": "Fullscreen",
 
@@ -5399,19 +5181,19 @@
 
         var _i18n2 = _interopRequireDefault(_i18n);
 
-        var _constants = _dereq_(26);
+        var _constants = _dereq_(24);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
-        var _time = _dereq_(32);
+        var _time = _dereq_(30);
 
-        var _media = _dereq_(30);
+        var _media = _dereq_(28);
 
-        var _dom = _dereq_(27);
+        var _dom = _dereq_(25);
 
         var dom = _interopRequireWildcard(_dom);
 
-        var _generate = _dereq_(29);
+        var _generate = _dereq_(27);
 
         function _interopRequireWildcard(obj) {
           if (obj && obj.__esModule) {
@@ -5653,6 +5435,11 @@
                 t.mediaFiles = null;
                 t.trackFiles = null;
 
+                t.media.addEventListener(
+                  "rendererready",
+                  this.updateNode.bind(this)
+                );
+
                 if (
                   (_constants.IS_IPAD && t.options.iPadUseNativeControls) ||
                   (_constants.IS_IPHONE && t.options.iPhoneUseNativeControls)
@@ -5709,6 +5496,7 @@
                       t.options.classPrefix +
                       'controls"></div>') +
                     "</div>";
+
                   t.getElement(t.container).addEventListener(
                     "focus",
                     function (e) {
@@ -5856,16 +5644,12 @@
                   } else {
                     t.height = t.options["default" + capsTagName + "Height"];
                   }
-
                   t.initialAspectRatio =
                     t.height >= t.width
                       ? t.width / t.height
                       : t.height / t.width;
 
                   t.setPlayerSize(t.width, t.height);
-
-                  playerOptions.pluginWidth = t.width;
-                  playerOptions.pluginHeight = t.height;
                 } else if (
                   !t.isVideo &&
                   !t.options.features.length &&
@@ -5873,6 +5657,9 @@
                 ) {
                   t.node.style.display = "none";
                 }
+
+                playerOptions.pluginWidth = t.width;
+                playerOptions.pluginHeight = t.height;
 
                 _mejs2.default.MepDefaults = playerOptions;
 
@@ -5894,6 +5681,33 @@
                   );
                   t.getElement(t.container).dispatchEvent(event);
                 }
+              },
+            },
+            {
+              key: "updateNode",
+              value: function updateNode(event) {
+                var node = void 0,
+                  iframeId = void 0;
+                var mediaElement = event.detail.target.hasOwnProperty(
+                  "mediaElement"
+                )
+                  ? event.detail.target.mediaElement
+                  : event.detail.target;
+                var originalNode = mediaElement.originalNode;
+
+                if (event.detail.isIframe) {
+                  iframeId = mediaElement.renderer.id;
+                  node = mediaElement.querySelector("#" + iframeId);
+                  node.style.position = "absolute";
+
+                  if (originalNode.style.maxWidth) {
+                    node.style.maxWidth = originalNode.style.maxWidth;
+                  }
+                } else {
+                  node = event.detail.target;
+                }
+                this.domNode = node;
+                this.node = node;
               },
             },
             {
@@ -6423,11 +6237,7 @@
                       } catch (exp) {}
                     }
 
-                    if (typeof t.media.renderer.stop === "function") {
-                      t.media.renderer.stop();
-                    } else {
-                      t.pause();
-                    }
+                    t.pause();
 
                     if (t.setProgressRail) {
                       t.setProgressRail();
@@ -6767,7 +6577,6 @@
                       }
                       el = parentEl;
                     }
-
                     return null;
                   })(),
                   parentStyles = parent
@@ -6825,7 +6634,6 @@
                     if (isNaN(ratio) || ratio < 0.01 || ratio > 100) {
                       ratio = 1;
                     }
-
                     return ratio;
                   })(),
                   parentHeight = parseFloat(parentStyles.height);
@@ -6834,7 +6642,9 @@
                   parentWidth = parseFloat(parentStyles.width);
 
                 if (t.isVideo) {
-                  if (t.height === "100%") {
+                  if (t.height === "100%" && t.width === "100%") {
+                    newHeight = parentHeight;
+                  } else if (t.height === "100%") {
                     newHeight = parseFloat(
                       (parentWidth * nativeHeight) / nativeWidth,
                       10
@@ -6847,6 +6657,17 @@
                   }
                 } else {
                   newHeight = nativeHeight;
+                }
+
+                if (
+                  newHeight <=
+                  t.container.querySelector(
+                    "." + t.options.classPrefix + "inner"
+                  ).offsetHeight
+                ) {
+                  newHeight = t.container.querySelector(
+                    "." + t.options.classPrefix + "inner"
+                  ).offsetHeight;
                 }
 
                 if (isNaN(newHeight)) {
@@ -6877,6 +6698,16 @@
 
                   if (t.isVideo && t.media.setSize) {
                     t.media.setSize(parentWidth, newHeight);
+                  }
+
+                  if (
+                    newHeight <=
+                    t.container.querySelector(
+                      "." + t.options.classPrefix + "inner"
+                    ).offsetHeight
+                  ) {
+                    t.node.style.width = "auto";
+                    t.node.style.height = "auto";
                   }
 
                   var layerChildren = t.getElement(t.layers).children;
@@ -6974,7 +6805,6 @@
 
                 var parentWidth = parseFloat(parentStyles.width),
                   parentHeight = parseFloat(parentStyles.height);
-
                 t.setDimensions("100%", "100%");
 
                 var poster = t
@@ -6987,8 +6817,8 @@
                 var targetElement = t
                     .getElement(t.container)
                     .querySelectorAll("object, embed, iframe, video"),
-                  initHeight = t.height,
-                  initWidth = t.width,
+                  initHeight = parseFloat(t.height, 10),
+                  initWidth = parseFloat(t.width, 10),
                   scaleX1 = parentWidth,
                   scaleY1 = (initHeight * parentWidth) / initWidth,
                   scaleX2 = (initWidth * parentHeight) / initHeight,
@@ -7053,52 +6883,12 @@
                   return;
                 }
 
-                if (t.rail && dom.visible(t.rail)) {
-                  var totalStyles = t.total
-                      ? getComputedStyle(t.total, null)
-                      : null,
-                    totalMargin = totalStyles
-                      ? parseFloat(totalStyles.marginLeft) +
-                        parseFloat(totalStyles.marginRight)
-                      : 0,
-                    railStyles = getComputedStyle(t.rail),
-                    railMargin =
-                      parseFloat(railStyles.marginLeft) +
-                      parseFloat(railStyles.marginRight);
-
-                  var siblingsWidth = 0;
-
-                  var siblings = dom.siblings(t.rail, function (el) {
-                      return el !== t.rail;
-                    }),
-                    total = siblings.length;
-                  for (var i = 0; i < total; i++) {
-                    siblingsWidth += siblings[i].offsetWidth;
-                  }
-
-                  siblingsWidth +=
-                    totalMargin +
-                    (totalMargin === 0 ? railMargin * 2 : railMargin) +
-                    1;
-
-                  t.getElement(t.container).style.minWidth =
-                    siblingsWidth + "px";
-
-                  var event = (0, _general.createEvent)(
-                    "controlsresize",
-                    t.getElement(t.container)
-                  );
-                  t.getElement(t.container).dispatchEvent(event);
-                } else {
+                if (!(t.rail && dom.visible(t.rail))) {
                   var children = t.getElement(t.controls).children;
                   var minWidth = 0;
 
-                  for (
-                    var _i = 0, _total = children.length;
-                    _i < _total;
-                    _i++
-                  ) {
-                    minWidth += children[_i].offsetWidth;
+                  for (var i = 0, total = children.length; i < total; i++) {
+                    minWidth += children[i].offsetWidth;
                   }
 
                   t.getElement(t.container).style.minWidth = minWidth + "px";
@@ -7257,11 +7047,11 @@
                 if (events.w) {
                   var _eventList = events.w.split(" ");
                   for (
-                    var _i2 = 0, _total2 = _eventList.length;
-                    _i2 < _total2;
-                    _i2++
+                    var _i = 0, _total = _eventList.length;
+                    _i < _total;
+                    _i++
                   ) {
-                    _eventList[_i2].split(".").reduce(function (part, e) {
+                    _eventList[_i].split(".").reduce(function (part, e) {
                       _window2.default.addEventListener(e, callback, false);
                       return e;
                     }, "");
@@ -7288,11 +7078,11 @@
                 if (events.w) {
                   var _eventList2 = events.w.split(" ");
                   for (
-                    var _i3 = 0, _total3 = _eventList2.length;
-                    _i3 < _total3;
-                    _i3++
+                    var _i2 = 0, _total2 = _eventList2.length;
+                    _i2 < _total2;
+                    _i2++
                   ) {
-                    _eventList2[_i3].split(".").reduce(function (part, e) {
+                    _eventList2[_i2].split(".").reduce(function (part, e) {
                       _window2.default.removeEventListener(e, callback, false);
                       return e;
                     }, "");
@@ -7660,6 +7450,12 @@
             {
               key: "setCurrentTime",
               value: function setCurrentTime(time) {
+                var userInteraction =
+                  arguments.length > 1 && arguments[1] !== undefined
+                    ? arguments[1]
+                    : false;
+
+                this.seekUserInteraction = userInteraction;
                 this.proxy.setCurrentTime(time);
               },
             },
@@ -7818,8 +7614,8 @@
                       }
                     }
                     if (t.trackFiles) {
-                      var _loop3 = function _loop3(_i4, _total4) {
-                        var track = t.trackFiles[_i4];
+                      var _loop3 = function _loop3(_i3, _total3) {
+                        var track = t.trackFiles[_i3];
                         var newTrack =
                           _document2.default.createElement("track");
                         newTrack.kind = track.kind;
@@ -7830,16 +7626,16 @@
                         node.appendChild(newTrack);
                         newTrack.addEventListener("load", function () {
                           this.mode = "showing";
-                          node.textTracks[_i4].mode = "showing";
+                          node.textTracks[_i3].mode = "showing";
                         });
                       };
 
                       for (
-                        var _i4 = 0, _total4 = t.trackFiles.length;
-                        _i4 < _total4;
-                        _i4++
+                        var _i3 = 0, _total3 = t.trackFiles.length;
+                        _i3 < _total3;
+                        _i3++
                       ) {
-                        _loop3(_i4, _total4);
+                        _loop3(_i3, _total3);
                       }
                     }
 
@@ -7860,8 +7656,6 @@
                 ) {
                   t.media.renderer.destroy();
                 }
-
-                delete _mejs2.default.players[t.id];
 
                 if (_typeof(t.getElement(t.container)) === "object") {
                   var offscreen = t
@@ -7954,13 +7748,13 @@
       {
         18: 18,
         2: 2,
+        24: 24,
+        25: 25,
         26: 26,
         27: 27,
         28: 28,
-        29: 29,
         3: 3,
         30: 30,
-        32: 32,
         6: 6,
         7: 7,
         8: 8,
@@ -8289,13 +8083,13 @@
 
         var _renderer = _dereq_(9);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
-        var _media = _dereq_(30);
+        var _media = _dereq_(28);
 
-        var _constants = _dereq_(26);
+        var _constants = _dereq_(24);
 
-        var _dom = _dereq_(27);
+        var _dom = _dereq_(25);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -8561,8 +8355,8 @@
               }
             };
 
-            var event = (0, _general.createEvent)("rendererready", node);
-            mediaElement.dispatchEvent(event);
+            var event = (0, _general.createEvent)("rendererready", node, false);
+            mediaElement.originalNode.dispatchEvent(event);
 
             mediaElement.promises.push(
               NativeDash.load({
@@ -8583,635 +8377,12 @@
 
         _renderer.renderer.add(DashNativeRenderer);
       },
-      { 26: 26, 27: 27, 28: 28, 3: 3, 30: 30, 8: 8, 9: 9 },
+      { 24: 24, 25: 25, 26: 26, 28: 28, 3: 3, 8: 8, 9: 9 },
     ],
     21: [
       function (_dereq_, module, exports) {
         "use strict";
 
-        Object.defineProperty(exports, "__esModule", {
-          value: true,
-        });
-        exports.PluginDetector = undefined;
-
-        var _typeof =
-          typeof Symbol === "function" && typeof Symbol.iterator === "symbol"
-            ? function (obj) {
-                return typeof obj;
-              }
-            : function (obj) {
-                return obj &&
-                  typeof Symbol === "function" &&
-                  obj.constructor === Symbol &&
-                  obj !== Symbol.prototype
-                  ? "symbol"
-                  : typeof obj;
-              };
-
-        var _window = _dereq_(3);
-
-        var _window2 = _interopRequireDefault(_window);
-
-        var _document = _dereq_(2);
-
-        var _document2 = _interopRequireDefault(_document);
-
-        var _mejs = _dereq_(8);
-
-        var _mejs2 = _interopRequireDefault(_mejs);
-
-        var _i18n = _dereq_(6);
-
-        var _i18n2 = _interopRequireDefault(_i18n);
-
-        var _renderer = _dereq_(9);
-
-        var _general = _dereq_(28);
-
-        var _constants = _dereq_(26);
-
-        var _media = _dereq_(30);
-
-        function _interopRequireDefault(obj) {
-          return obj && obj.__esModule ? obj : { default: obj };
-        }
-
-        var PluginDetector = (exports.PluginDetector = {
-          plugins: [],
-
-          hasPluginVersion: function hasPluginVersion(plugin, v) {
-            var pv = PluginDetector.plugins[plugin];
-            v[1] = v[1] || 0;
-            v[2] = v[2] || 0;
-            return (
-              pv[0] > v[0] ||
-              (pv[0] === v[0] && pv[1] > v[1]) ||
-              (pv[0] === v[0] && pv[1] === v[1] && pv[2] >= v[2])
-            );
-          },
-
-          addPlugin: function addPlugin(
-            p,
-            pluginName,
-            mimeType,
-            activeX,
-            axDetect
-          ) {
-            PluginDetector.plugins[p] = PluginDetector.detectPlugin(
-              pluginName,
-              mimeType,
-              activeX,
-              axDetect
-            );
-          },
-
-          detectPlugin: function detectPlugin(
-            pluginName,
-            mimeType,
-            activeX,
-            axDetect
-          ) {
-            var version = [0, 0, 0],
-              description = void 0,
-              ax = void 0;
-
-            if (
-              _constants.NAV.plugins !== null &&
-              _constants.NAV.plugins !== undefined &&
-              _typeof(_constants.NAV.plugins[pluginName]) === "object"
-            ) {
-              description = _constants.NAV.plugins[pluginName].description;
-              if (
-                description &&
-                !(
-                  typeof _constants.NAV.mimeTypes !== "undefined" &&
-                  _constants.NAV.mimeTypes[mimeType] &&
-                  !_constants.NAV.mimeTypes[mimeType].enabledPlugin
-                )
-              ) {
-                version = description
-                  .replace(pluginName, "")
-                  .replace(/^\s+/, "")
-                  .replace(/\sr/gi, ".")
-                  .split(".");
-                for (var i = 0, total = version.length; i < total; i++) {
-                  version[i] = parseInt(version[i].match(/\d+/), 10);
-                }
-              }
-            } else if (_window2.default.ActiveXObject !== undefined) {
-              try {
-                ax = new ActiveXObject(activeX);
-                if (ax) {
-                  version = axDetect(ax);
-                }
-              } catch (e) {}
-            }
-            return version;
-          },
-        });
-
-        PluginDetector.addPlugin(
-          "flash",
-          "Shockwave Flash",
-          "application/x-shockwave-flash",
-          "ShockwaveFlash.ShockwaveFlash",
-          function (ax) {
-            var version = [],
-              d = ax.GetVariable("$version");
-
-            if (d) {
-              d = d.split(" ")[1].split(",");
-              version = [
-                parseInt(d[0], 10),
-                parseInt(d[1], 10),
-                parseInt(d[2], 10),
-              ];
-            }
-            return version;
-          }
-        );
-
-        var FlashMediaElementRenderer = {
-          create: function create(mediaElement, options, mediaFiles) {
-            var flash = {};
-            var isActive = false;
-
-            flash.options = options;
-            flash.id = mediaElement.id + "_" + flash.options.prefix;
-            flash.mediaElement = mediaElement;
-            flash.flashState = {};
-            flash.flashApi = null;
-            flash.flashApiStack = [];
-
-            var props = _mejs2.default.html5media.properties,
-              assignGettersSetters = function assignGettersSetters(propName) {
-                flash.flashState[propName] = null;
-
-                var capName =
-                  "" +
-                  propName.substring(0, 1).toUpperCase() +
-                  propName.substring(1);
-
-                flash["get" + capName] = function () {
-                  if (flash.flashApi !== null) {
-                    if (
-                      typeof flash.flashApi["get_" + propName] === "function"
-                    ) {
-                      var value = flash.flashApi["get_" + propName]();
-
-                      if (propName === "buffered") {
-                        return {
-                          start: function start() {
-                            return 0;
-                          },
-                          end: function end() {
-                            return value;
-                          },
-                          length: 1,
-                        };
-                      }
-                      return value;
-                    } else {
-                      return null;
-                    }
-                  } else {
-                    return null;
-                  }
-                };
-
-                flash["set" + capName] = function (value) {
-                  if (propName === "src") {
-                    value = (0, _media.absolutizeUrl)(value);
-                  }
-
-                  if (
-                    flash.flashApi !== null &&
-                    flash.flashApi["set_" + propName] !== undefined
-                  ) {
-                    try {
-                      flash.flashApi["set_" + propName](value);
-                    } catch (e) {}
-                  } else {
-                    flash.flashApiStack.push({
-                      type: "set",
-                      propName: propName,
-                      value: value,
-                    });
-                  }
-                };
-              };
-
-            for (var i = 0, total = props.length; i < total; i++) {
-              assignGettersSetters(props[i]);
-            }
-
-            var methods = _mejs2.default.html5media.methods,
-              assignMethods = function assignMethods(methodName) {
-                flash[methodName] = function () {
-                  if (isActive) {
-                    if (flash.flashApi !== null) {
-                      if (flash.flashApi["fire_" + methodName]) {
-                        try {
-                          flash.flashApi["fire_" + methodName]();
-                        } catch (e) {}
-                      } else {
-                      }
-                    } else {
-                      flash.flashApiStack.push({
-                        type: "call",
-                        methodName: methodName,
-                      });
-                    }
-                  }
-                };
-              };
-            methods.push("stop");
-            for (var _i = 0, _total = methods.length; _i < _total; _i++) {
-              assignMethods(methods[_i]);
-            }
-
-            var initEvents = ["rendererready"];
-
-            for (
-              var _i2 = 0, _total2 = initEvents.length;
-              _i2 < _total2;
-              _i2++
-            ) {
-              var event = (0, _general.createEvent)(initEvents[_i2], flash);
-              mediaElement.dispatchEvent(event);
-            }
-
-            _window2.default["__ready__" + flash.id] = function () {
-              flash.flashReady = true;
-              flash.flashApi = _document2.default.getElementById(
-                "__" + flash.id
-              );
-
-              if (flash.flashApiStack.length) {
-                for (
-                  var _i3 = 0, _total3 = flash.flashApiStack.length;
-                  _i3 < _total3;
-                  _i3++
-                ) {
-                  var stackItem = flash.flashApiStack[_i3];
-
-                  if (stackItem.type === "set") {
-                    var propName = stackItem.propName,
-                      capName =
-                        "" +
-                        propName.substring(0, 1).toUpperCase() +
-                        propName.substring(1);
-
-                    flash["set" + capName](stackItem.value);
-                  } else if (stackItem.type === "call") {
-                    flash[stackItem.methodName]();
-                  }
-                }
-              }
-            };
-
-            _window2.default["__event__" + flash.id] = function (
-              eventName,
-              message
-            ) {
-              var event = (0, _general.createEvent)(eventName, flash);
-              if (message) {
-                try {
-                  event.data = JSON.parse(message);
-                  event.details.data = JSON.parse(message);
-                } catch (e) {
-                  event.message = message;
-                }
-              }
-
-              flash.mediaElement.dispatchEvent(event);
-            };
-
-            flash.flashWrapper = _document2.default.createElement("div");
-
-            if (
-              ["always", "sameDomain"].indexOf(
-                flash.options.shimScriptAccess
-              ) === -1
-            ) {
-              flash.options.shimScriptAccess = "sameDomain";
-            }
-
-            var autoplay = mediaElement.originalNode.autoplay,
-              flashVars = [
-                "uid=" + flash.id,
-                "autoplay=" + autoplay,
-                "allowScriptAccess=" + flash.options.shimScriptAccess,
-                "preload=" +
-                  (mediaElement.originalNode.getAttribute("preload") || ""),
-              ],
-              isVideo =
-                mediaElement.originalNode !== null &&
-                mediaElement.originalNode.tagName.toLowerCase() === "video",
-              flashHeight = isVideo ? mediaElement.originalNode.height : 1,
-              flashWidth = isVideo ? mediaElement.originalNode.width : 1;
-
-            if (mediaElement.originalNode.getAttribute("src")) {
-              flashVars.push(
-                "src=" + mediaElement.originalNode.getAttribute("src")
-              );
-            }
-
-            if (flash.options.enablePseudoStreaming === true) {
-              flashVars.push(
-                "pseudostreamstart=" +
-                  flash.options.pseudoStreamingStartQueryParam
-              );
-              flashVars.push(
-                "pseudostreamtype=" + flash.options.pseudoStreamingType
-              );
-            }
-
-            if (flash.options.streamDelimiter) {
-              flashVars.push(
-                "streamdelimiter=" +
-                  encodeURIComponent(flash.options.streamDelimiter)
-              );
-            }
-
-            if (flash.options.proxyType) {
-              flashVars.push("proxytype=" + flash.options.proxyType);
-            }
-
-            mediaElement.appendChild(flash.flashWrapper);
-            mediaElement.originalNode.style.display = "none";
-
-            var settings = [];
-
-            if (_constants.IS_IE || _constants.IS_EDGE) {
-              var specialIEContainer = _document2.default.createElement("div");
-              flash.flashWrapper.appendChild(specialIEContainer);
-
-              if (_constants.IS_EDGE) {
-                settings = [
-                  'type="application/x-shockwave-flash"',
-                  'data="' +
-                    flash.options.pluginPath +
-                    flash.options.filename +
-                    '"',
-                  'id="__' + flash.id + '"',
-                  'width="' + flashWidth + '"',
-                  'height="' + flashHeight + "'\"",
-                ];
-              } else {
-                settings = [
-                  'classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"',
-                  'codebase="//download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab"',
-                  'id="__' + flash.id + '"',
-                  'width="' + flashWidth + '"',
-                  'height="' + flashHeight + '"',
-                ];
-              }
-
-              if (!isVideo) {
-                settings.push(
-                  'style="clip: rect(0 0 0 0); position: absolute;"'
-                );
-              }
-
-              specialIEContainer.outerHTML =
-                "<object " +
-                settings.join(" ") +
-                ">" +
-                ('<param name="movie" value="' +
-                  flash.options.pluginPath +
-                  flash.options.filename +
-                  "?x=" +
-                  new Date() +
-                  '" />') +
-                ('<param name="flashvars" value="' +
-                  flashVars.join("&amp;") +
-                  '" />') +
-                '<param name="quality" value="high" />' +
-                '<param name="bgcolor" value="#000000" />' +
-                '<param name="wmode" value="transparent" />' +
-                ('<param name="allowScriptAccess" value="' +
-                  flash.options.shimScriptAccess +
-                  '" />') +
-                '<param name="allowFullScreen" value="true" />' +
-                ("<div>" + _i18n2.default.t("mejs.install-flash") + "</div>") +
-                "</object>";
-            } else {
-              settings = [
-                'id="__' + flash.id + '"',
-                'name="__' + flash.id + '"',
-                'play="true"',
-                'loop="false"',
-                'quality="high"',
-                'bgcolor="#000000"',
-                'wmode="transparent"',
-                'allowScriptAccess="' + flash.options.shimScriptAccess + '"',
-                'allowFullScreen="true"',
-                'type="application/x-shockwave-flash"',
-                'pluginspage="//www.macromedia.com/go/getflashplayer"',
-                'src="' +
-                  flash.options.pluginPath +
-                  flash.options.filename +
-                  '"',
-                'flashvars="' + flashVars.join("&") + '"',
-              ];
-
-              if (isVideo) {
-                settings.push('width="' + flashWidth + '"');
-                settings.push('height="' + flashHeight + '"');
-              } else {
-                settings.push(
-                  'style="position: fixed; left: -9999em; top: -9999em;"'
-                );
-              }
-
-              flash.flashWrapper.innerHTML =
-                "<embed " + settings.join(" ") + ">";
-            }
-
-            flash.flashNode = flash.flashWrapper.lastChild;
-
-            flash.hide = function () {
-              isActive = false;
-              if (isVideo) {
-                flash.flashNode.style.display = "none";
-              }
-            };
-            flash.show = function () {
-              isActive = true;
-              if (isVideo) {
-                flash.flashNode.style.display = "";
-              }
-            };
-            flash.setSize = function (width, height) {
-              flash.flashNode.style.width = width + "px";
-              flash.flashNode.style.height = height + "px";
-
-              if (
-                flash.flashApi !== null &&
-                typeof flash.flashApi.fire_setSize === "function"
-              ) {
-                flash.flashApi.fire_setSize(width, height);
-              }
-            };
-
-            flash.destroy = function () {
-              flash.flashNode.remove();
-            };
-
-            if (mediaFiles && mediaFiles.length > 0) {
-              for (
-                var _i4 = 0, _total4 = mediaFiles.length;
-                _i4 < _total4;
-                _i4++
-              ) {
-                if (
-                  _renderer.renderer.renderers[options.prefix].canPlayType(
-                    mediaFiles[_i4].type
-                  )
-                ) {
-                  flash.setSrc(mediaFiles[_i4].src);
-                  break;
-                }
-              }
-            }
-
-            return flash;
-          },
-        };
-
-        var hasFlash = PluginDetector.hasPluginVersion("flash", [10, 0, 0]);
-
-        if (hasFlash) {
-          _media.typeChecks.push(function (url) {
-            url = url.toLowerCase();
-
-            if (url.startsWith("rtmp")) {
-              if (~url.indexOf(".mp3")) {
-                return "audio/rtmp";
-              } else {
-                return "video/rtmp";
-              }
-            } else if (/\.og(a|g)/i.test(url)) {
-              return "audio/ogg";
-            } else if (~url.indexOf(".m3u8")) {
-              return "application/x-mpegURL";
-            } else if (~url.indexOf(".mpd")) {
-              return "application/dash+xml";
-            } else if (~url.indexOf(".flv")) {
-              return "video/flv";
-            } else {
-              return null;
-            }
-          });
-
-          var FlashMediaElementVideoRenderer = {
-            name: "flash_video",
-            options: {
-              prefix: "flash_video",
-              filename: "mediaelement-flash-video.swf",
-              enablePseudoStreaming: false,
-
-              pseudoStreamingStartQueryParam: "start",
-
-              pseudoStreamingType: "byte",
-
-              proxyType: "",
-
-              streamDelimiter: "",
-            },
-
-            canPlayType: function canPlayType(type) {
-              return ~[
-                "video/mp4",
-                "video/rtmp",
-                "audio/rtmp",
-                "rtmp/mp4",
-                "audio/mp4",
-                "video/flv",
-                "video/x-flv",
-              ].indexOf(type.toLowerCase());
-            },
-
-            create: FlashMediaElementRenderer.create,
-          };
-          _renderer.renderer.add(FlashMediaElementVideoRenderer);
-
-          var FlashMediaElementHlsVideoRenderer = {
-            name: "flash_hls",
-            options: {
-              prefix: "flash_hls",
-              filename: "mediaelement-flash-video-hls.swf",
-            },
-
-            canPlayType: function canPlayType(type) {
-              return ~[
-                "application/x-mpegurl",
-                "application/vnd.apple.mpegurl",
-                "audio/mpegurl",
-                "audio/hls",
-                "video/hls",
-              ].indexOf(type.toLowerCase());
-            },
-
-            create: FlashMediaElementRenderer.create,
-          };
-          _renderer.renderer.add(FlashMediaElementHlsVideoRenderer);
-
-          var FlashMediaElementMdashVideoRenderer = {
-            name: "flash_dash",
-            options: {
-              prefix: "flash_dash",
-              filename: "mediaelement-flash-video-mdash.swf",
-            },
-
-            canPlayType: function canPlayType(type) {
-              return ~["application/dash+xml"].indexOf(type.toLowerCase());
-            },
-
-            create: FlashMediaElementRenderer.create,
-          };
-          _renderer.renderer.add(FlashMediaElementMdashVideoRenderer);
-
-          var FlashMediaElementAudioRenderer = {
-            name: "flash_audio",
-            options: {
-              prefix: "flash_audio",
-              filename: "mediaelement-flash-audio.swf",
-            },
-
-            canPlayType: function canPlayType(type) {
-              return ~["audio/mp3"].indexOf(type.toLowerCase());
-            },
-
-            create: FlashMediaElementRenderer.create,
-          };
-          _renderer.renderer.add(FlashMediaElementAudioRenderer);
-
-          var FlashMediaElementAudioOggRenderer = {
-            name: "flash_audio_ogg",
-            options: {
-              prefix: "flash_audio_ogg",
-              filename: "mediaelement-flash-audio-ogg.swf",
-            },
-
-            canPlayType: function canPlayType(type) {
-              return ~["audio/ogg", "audio/oga", "audio/ogv"].indexOf(
-                type.toLowerCase()
-              );
-            },
-
-            create: FlashMediaElementRenderer.create,
-          };
-          _renderer.renderer.add(FlashMediaElementAudioOggRenderer);
-        }
-      },
-      { 2: 2, 26: 26, 28: 28, 3: 3, 30: 30, 6: 6, 8: 8, 9: 9 },
-    ],
-    22: [
-      function (_dereq_, module, exports) {
-        "use strict";
-
         var _typeof =
           typeof Symbol === "function" && typeof Symbol.iterator === "symbol"
             ? function (obj) {
@@ -9236,316 +8407,13 @@
 
         var _renderer = _dereq_(9);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
-        var _constants = _dereq_(26);
+        var _constants = _dereq_(24);
 
-        var _media = _dereq_(30);
+        var _media = _dereq_(28);
 
-        var _dom = _dereq_(27);
-
-        function _interopRequireDefault(obj) {
-          return obj && obj.__esModule ? obj : { default: obj };
-        }
-
-        var NativeFlv = {
-          promise: null,
-
-          load: function load(settings) {
-            if (typeof flvjs !== "undefined") {
-              NativeFlv.promise = new Promise(function (resolve) {
-                resolve();
-              }).then(function () {
-                NativeFlv._createPlayer(settings);
-              });
-            } else {
-              settings.options.path =
-                typeof settings.options.path === "string"
-                  ? settings.options.path
-                  : "https://cdn.jsdelivr.net/npm/flv.js@latest";
-
-              NativeFlv.promise =
-                NativeFlv.promise ||
-                (0, _dom.loadScript)(settings.options.path);
-              NativeFlv.promise.then(function () {
-                NativeFlv._createPlayer(settings);
-              });
-            }
-
-            return NativeFlv.promise;
-          },
-
-          _createPlayer: function _createPlayer(settings) {
-            flvjs.LoggingControl.enableDebug = settings.options.debug;
-            flvjs.LoggingControl.enableVerbose = settings.options.debug;
-            var player = flvjs.createPlayer(settings.options, settings.configs);
-            _window2.default["__ready__" + settings.id](player);
-            return player;
-          },
-        };
-
-        var FlvNativeRenderer = {
-          name: "native_flv",
-          options: {
-            prefix: "native_flv",
-            flv: {
-              path: "https://cdn.jsdelivr.net/npm/flv.js@latest",
-
-              cors: true,
-              debug: false,
-            },
-          },
-
-          canPlayType: function canPlayType(type) {
-            return (
-              _constants.HAS_MSE &&
-              ["video/x-flv", "video/flv"].indexOf(type.toLowerCase()) > -1
-            );
-          },
-
-          create: function create(mediaElement, options, mediaFiles) {
-            var originalNode = mediaElement.originalNode,
-              id = mediaElement.id + "_" + options.prefix;
-
-            var node = null,
-              flvPlayer = null;
-
-            node = originalNode.cloneNode(true);
-            options = Object.assign(options, mediaElement.options);
-
-            var props = _mejs2.default.html5media.properties,
-              events = _mejs2.default.html5media.events
-                .concat(["click", "mouseover", "mouseout"])
-                .filter(function (e) {
-                  return e !== "error";
-                }),
-              attachNativeEvents = function attachNativeEvents(e) {
-                var event = (0, _general.createEvent)(e.type, mediaElement);
-                mediaElement.dispatchEvent(event);
-              },
-              assignGettersSetters = function assignGettersSetters(propName) {
-                var capName =
-                  "" +
-                  propName.substring(0, 1).toUpperCase() +
-                  propName.substring(1);
-
-                node["get" + capName] = function () {
-                  return flvPlayer !== null ? node[propName] : null;
-                };
-
-                node["set" + capName] = function (value) {
-                  if (
-                    _mejs2.default.html5media.readOnlyProperties.indexOf(
-                      propName
-                    ) === -1
-                  ) {
-                    if (propName === "src") {
-                      node[propName] =
-                        (typeof value === "undefined"
-                          ? "undefined"
-                          : _typeof(value)) === "object" && value.src
-                          ? value.src
-                          : value;
-                      if (flvPlayer !== null) {
-                        var _flvOptions = {};
-                        _flvOptions.type = "flv";
-                        _flvOptions.url = value;
-                        _flvOptions.cors = options.flv.cors;
-                        _flvOptions.debug = options.flv.debug;
-                        _flvOptions.path = options.flv.path;
-                        var _flvConfigs = options.flv.configs;
-
-                        flvPlayer.destroy();
-                        for (var i = 0, total = events.length; i < total; i++) {
-                          node.removeEventListener(
-                            events[i],
-                            attachNativeEvents
-                          );
-                        }
-                        flvPlayer = NativeFlv._createPlayer({
-                          options: _flvOptions,
-                          configs: _flvConfigs,
-                          id: id,
-                        });
-                        flvPlayer.attachMediaElement(node);
-                        flvPlayer.load();
-                      }
-                    } else {
-                      node[propName] = value;
-                    }
-                  }
-                };
-              };
-
-            for (var i = 0, total = props.length; i < total; i++) {
-              assignGettersSetters(props[i]);
-            }
-
-            _window2.default["__ready__" + id] = function (_flvPlayer) {
-              mediaElement.flvPlayer = flvPlayer = _flvPlayer;
-
-              var flvEvents = flvjs.Events,
-                assignEvents = function assignEvents(eventName) {
-                  if (eventName === "loadedmetadata") {
-                    flvPlayer.unload();
-                    flvPlayer.detachMediaElement();
-                    flvPlayer.attachMediaElement(node);
-                    flvPlayer.load();
-                  }
-
-                  node.addEventListener(eventName, attachNativeEvents);
-                };
-
-              for (var _i = 0, _total = events.length; _i < _total; _i++) {
-                assignEvents(events[_i]);
-              }
-
-              var assignFlvEvents = function assignFlvEvents(name, data) {
-                if (name === "error") {
-                  var message = data[0] + ": " + data[1] + " " + data[2].msg;
-                  mediaElement.generateError(message, node.src);
-                } else {
-                  var _event = (0, _general.createEvent)(name, mediaElement);
-                  _event.data = data;
-                  mediaElement.dispatchEvent(_event);
-                }
-              };
-
-              var _loop = function _loop(eventType) {
-                if (flvEvents.hasOwnProperty(eventType)) {
-                  flvPlayer.on(flvEvents[eventType], function () {
-                    for (
-                      var _len = arguments.length, args = Array(_len), _key = 0;
-                      _key < _len;
-                      _key++
-                    ) {
-                      args[_key] = arguments[_key];
-                    }
-
-                    return assignFlvEvents(flvEvents[eventType], args);
-                  });
-                }
-              };
-
-              for (var eventType in flvEvents) {
-                _loop(eventType);
-              }
-            };
-
-            if (mediaFiles && mediaFiles.length > 0) {
-              for (
-                var _i2 = 0, _total2 = mediaFiles.length;
-                _i2 < _total2;
-                _i2++
-              ) {
-                if (
-                  _renderer.renderer.renderers[options.prefix].canPlayType(
-                    mediaFiles[_i2].type
-                  )
-                ) {
-                  node.setAttribute("src", mediaFiles[_i2].src);
-                  break;
-                }
-              }
-            }
-
-            node.setAttribute("id", id);
-
-            originalNode.parentNode.insertBefore(node, originalNode);
-            originalNode.autoplay = false;
-            originalNode.style.display = "none";
-
-            var flvOptions = {};
-            flvOptions.type = "flv";
-            flvOptions.url = node.src;
-            flvOptions.cors = options.flv.cors;
-            flvOptions.debug = options.flv.debug;
-            flvOptions.path = options.flv.path;
-            var flvConfigs = options.flv.configs;
-
-            node.setSize = function (width, height) {
-              node.style.width = width + "px";
-              node.style.height = height + "px";
-              return node;
-            };
-
-            node.hide = function () {
-              if (flvPlayer !== null) {
-                flvPlayer.pause();
-              }
-              node.style.display = "none";
-              return node;
-            };
-
-            node.show = function () {
-              node.style.display = "";
-              return node;
-            };
-
-            node.destroy = function () {
-              if (flvPlayer !== null) {
-                flvPlayer.destroy();
-              }
-            };
-
-            var event = (0, _general.createEvent)("rendererready", node);
-            mediaElement.dispatchEvent(event);
-
-            mediaElement.promises.push(
-              NativeFlv.load({
-                options: flvOptions,
-                configs: flvConfigs,
-                id: id,
-              })
-            );
-
-            return node;
-          },
-        };
-
-        _media.typeChecks.push(function (url) {
-          return ~url.toLowerCase().indexOf(".flv") ? "video/flv" : null;
-        });
-
-        _renderer.renderer.add(FlvNativeRenderer);
-      },
-      { 26: 26, 27: 27, 28: 28, 3: 3, 30: 30, 8: 8, 9: 9 },
-    ],
-    23: [
-      function (_dereq_, module, exports) {
-        "use strict";
-
-        var _typeof =
-          typeof Symbol === "function" && typeof Symbol.iterator === "symbol"
-            ? function (obj) {
-                return typeof obj;
-              }
-            : function (obj) {
-                return obj &&
-                  typeof Symbol === "function" &&
-                  obj.constructor === Symbol &&
-                  obj !== Symbol.prototype
-                  ? "symbol"
-                  : typeof obj;
-              };
-
-        var _window = _dereq_(3);
-
-        var _window2 = _interopRequireDefault(_window);
-
-        var _mejs = _dereq_(8);
-
-        var _mejs2 = _interopRequireDefault(_mejs);
-
-        var _renderer = _dereq_(9);
-
-        var _general = _dereq_(28);
-
-        var _constants = _dereq_(26);
-
-        var _media = _dereq_(30);
-
-        var _dom = _dereq_(27);
+        var _dom = _dereq_(25);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -9851,8 +8719,8 @@
               }
             };
 
-            var event = (0, _general.createEvent)("rendererready", node);
-            mediaElement.dispatchEvent(event);
+            var event = (0, _general.createEvent)("rendererready", node, false);
+            mediaElement.originalNode.dispatchEvent(event);
 
             mediaElement.promises.push(
               NativeHls.load({
@@ -9873,9 +8741,9 @@
 
         _renderer.renderer.add(HlsNativeRenderer);
       },
-      { 26: 26, 27: 27, 28: 28, 3: 3, 30: 30, 8: 8, 9: 9 },
+      { 24: 24, 25: 25, 26: 26, 28: 28, 3: 3, 8: 8, 9: 9 },
     ],
-    24: [
+    22: [
       function (_dereq_, module, exports) {
         "use strict";
 
@@ -9893,9 +8761,9 @@
 
         var _renderer = _dereq_(9);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
-        var _constants = _dereq_(26);
+        var _constants = _dereq_(24);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -10049,8 +8917,8 @@
               }
             });
 
-            var event = (0, _general.createEvent)("rendererready", node);
-            mediaElement.dispatchEvent(event);
+            var event = (0, _general.createEvent)("rendererready", node, false);
+            mediaElement.originalNode.dispatchEvent(event);
 
             return node;
           },
@@ -10061,9 +8929,9 @@
 
         _renderer.renderer.add(HtmlMediaElement);
       },
-      { 2: 2, 26: 26, 28: 28, 3: 3, 8: 8, 9: 9 },
+      { 2: 2, 24: 24, 26: 26, 3: 3, 8: 8, 9: 9 },
     ],
-    25: [
+    23: [
       function (_dereq_, module, exports) {
         "use strict";
 
@@ -10081,11 +8949,11 @@
 
         var _renderer = _dereq_(9);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
-        var _media = _dereq_(30);
+        var _media = _dereq_(28);
 
-        var _dom = _dereq_(27);
+        var _dom = _dereq_(25);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -10442,7 +9310,6 @@
               youtubeContainer,
               mediaElement.originalNode
             );
-
             mediaElement.originalNode.style.display = "none";
 
             var isAudio =
@@ -10544,7 +9411,8 @@
                     ) {
                       var event = (0, _general.createEvent)(
                         initEvents[_i4],
-                        youtube
+                        youtube,
+                        true
                       );
                       mediaElement.dispatchEvent(event);
                     }
@@ -10708,9 +9576,9 @@
 
         _renderer.renderer.add(YouTubeIframeRenderer);
       },
-      { 2: 2, 27: 27, 28: 28, 3: 3, 30: 30, 8: 8, 9: 9 },
+      { 2: 2, 25: 25, 26: 26, 28: 28, 3: 3, 8: 8, 9: 9 },
     ],
-    26: [
+    24: [
       function (_dereq_, module, exports) {
         "use strict";
 
@@ -10959,7 +9827,7 @@
       },
       { 2: 2, 3: 3, 8: 8 },
     ],
-    27: [
+    25: [
       function (_dereq_, module, exports) {
         "use strict";
 
@@ -11219,7 +10087,7 @@
       },
       { 2: 2, 3: 3, 8: 8 },
     ],
-    28: [
+    26: [
       function (_dereq_, module, exports) {
         "use strict";
 
@@ -11321,7 +10189,7 @@
           return ret;
         }
 
-        function createEvent(eventName, target) {
+        function createEvent(eventName, target, isIframe) {
           if (typeof eventName !== "string") {
             throw new Error("Event name must be a string");
           }
@@ -11329,6 +10197,7 @@
           var eventFrags = eventName.match(/([a-z]+\.([a-z]+))/i),
             detail = {
               target: target,
+              isIframe: isIframe,
             };
 
           if (eventFrags !== null) {
@@ -11364,7 +10233,7 @@
       },
       { 8: 8 },
     ],
-    29: [
+    27: [
       function (_dereq_, module, exports) {
         "use strict";
 
@@ -11475,7 +10344,7 @@
       },
       { 8: 8 },
     ],
-    30: [
+    28: [
       function (_dereq_, module, exports) {
         "use strict";
 
@@ -11494,7 +10363,7 @@
 
         var _mejs2 = _interopRequireDefault(_mejs);
 
-        var _general = _dereq_(28);
+        var _general = _dereq_(26);
 
         function _interopRequireDefault(obj) {
           return obj && obj.__esModule ? obj : { default: obj };
@@ -11552,7 +10421,7 @@
 
           if (normalizedExt) {
             if (
-              ~["mp4", "m4v", "ogg", "ogv", "webm", "flv", "mpeg"].indexOf(
+              ~["mp4", "m4v", "ogg", "ogv", "webm", "mpeg"].indexOf(
                 normalizedExt
               )
             ) {
@@ -11612,9 +10481,9 @@
         _mejs2.default.Utils.getExtension = getExtension;
         _mejs2.default.Utils.normalizeExtension = normalizeExtension;
       },
-      { 28: 28, 8: 8 },
+      { 26: 26, 8: 8 },
     ],
-    31: [
+    29: [
       function (_dereq_, module, exports) {
         "use strict";
 
@@ -11820,7 +10689,7 @@
       },
       { 2: 2, 4: 4, 5: 5 },
     ],
-    32: [
+    30: [
       function (_dereq_, module, exports) {
         "use strict";
 
@@ -12133,5 +11002,5 @@
     ],
   },
   {},
-  [31, 7, 6, 16, 24, 21, 20, 22, 23, 25, 17, 19, 18, 10, 11, 12, 13, 14, 15]
+  [29, 7, 6, 16, 22, 20, 21, 23, 17, 19, 18, 10, 11, 12, 13, 14, 15]
 );
